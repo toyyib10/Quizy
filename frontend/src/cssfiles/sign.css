@@ -79,6 +79,10 @@
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+.hold{
+  min-height: 85vh;
+}
+
 input[type="radio"] {
   display: none;
 }
@@ -111,10 +115,16 @@ input[type="radio"] {
     width: 37.48%;
     left: 14;
   }
+  .hold{
+    min-height: 40vh;
+  }
 }
 @media only screen and (max-width:768px) {
   .slide-controls .slider-tab {
     width: 45.8%;
     left: 14;
+  }
+  .hold {
+    min-height: 40vh;
   }
 }
