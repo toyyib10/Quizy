@@ -84,12 +84,12 @@ const Signup = () => {
           </div>
           {formik.touched.password ? <div className="text-danger">{formik.errors.password}</div> : ""}
           <div className="w-100 d-flex justify-content-center pt-lg-3 pt-4">
-            <button type="submit" className="btn btn-lg btn-light text-white w-75" style={{background: "-webkit-linear-gradient(left, #a445b2, #fa4299)"}}>Create Account</button>
+            <button type="submit" className="btn btn-lg btn-light text-white w-75 hover">Create Account</button>
           </div>
         </form>
         <h5 className="text-center m-0 mt-lg-3 mt-4">Or Create Account With</h5>
         <div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-2 mt-3">
-          <a className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
+          <a className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Gmail</a>
           <a className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
         </div>
       </div>

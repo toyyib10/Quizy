@@ -83,6 +83,14 @@
   min-height: 85vh;
 }
 
+.hover {
+  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+
+.hover:hover {
+  background: -webkit-linear-gradient(right, #a445b2, #fa4299);
+}
+
 input[type="radio"] {
   display: none;
 }
