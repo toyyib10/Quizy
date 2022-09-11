@@ -1,5 +1,6 @@
 import React from 'react'
 import "../../cssfiles/main.css"
+import {Link} from "react-router-dom"
 
 const Main = () => {
   return (
@@ -90,9 +91,9 @@ const Main = () => {
 
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
             <div className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-              <button className="btn w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+              <Link to="/admin/creategame" className="btn w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Create Game
-              </button>
+              </Link>
             </div>
             <div className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
              <button className="btn w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>

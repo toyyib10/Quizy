@@ -90,7 +90,55 @@ const Game = () => {
           </nav>
 
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            
+            <form action="">
+              <div className="w-100 d-flex justify-content-center mt-2">
+                <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
+                  <h2>Question</h2>
+                  <input className="form-control form-control-lg mt-2" placeholder="Start typing question" type="text" required />
+                </div>
+              </div>
+              <div className="w-100 mt-4 d-flex justify-content-between px-1 px-md-4 px-lg-4">
+                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-danger shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">A. </p>
+                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4" placeholder="Required" type="text" required />
+                  <input className="h-75 ms-1" type="checkbox" name="" id="" />
+                </div>
+                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-success shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">B. </p>
+                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4 " placeholder="Required" type="text" required />
+                  <input className="h-75 ms-1" type="checkbox" name="" id="" />
+                </div>
+              </div>
+              <div className="w-100 mt-4 d-flex justify-content-between px-2 px-md-4 px-lg-4">
+                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-warning shadow d-flex">
+                  <p className="m-0 fs-1 text-center p-lg-0 pt- p-md-0 ">
+                    C. </p>
+                  <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" type="text" />
+                  <input className="h-75 ms-1" type="checkbox" name="" id="" />
+                </div>
+                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-info shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">D. </p>
+                  <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" type="text" />
+                  <input className="h-75 ms-1" type="checkbox" name="" id="" />
+                </div>
+              </div>
+              <div className="col-12 shadow px-3 bg-white mt-4 d-flex justify-content-between align-items-center flex-wrap rounded-2">
+                <div className="overflow-auto col-md-6 my-1 col-12 bg-light p-2" style={{ height: "55px" }}>
+
+                </div>
+                <div className="d-flex justify-content-end col-md-6 col-12 my-2">
+                  <div>
+                    <button className="btn bg-success text-white h-100 mx-3"> Add</button>
+                  </div>
+                  <div>
+                    <button className="btn bg-danger h-100 mx-3 text-white">Delete</button>
+                  </div>
+                  <div>
+                    <button className="btn btn-light bg-light mx-3 h-100"> Save</button>
+                  </div>
+                </div>
+              </div>
+            </form>  
           </main>
         </div>
       </div>
@@ -98,4 +146,4 @@ const Game = () => {
   )
 }
 
-export default Game
+export default Game;
