@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik";
 import * as yup from "yup"
+import axios from "axios"
 
 const Signup = () => {
   const formik = useFormik({
@@ -13,6 +14,9 @@ const Signup = () => {
     },
     onSubmit: (values) => {
       console.log(values)
+      let details = values
+      const endPoint = "http://localhost:5000/auth/createaccount"
+      axios.post(endPoint, details)
     },
     validationSchema: yup.object({
       firstname: yup.string().required("This field is required"),

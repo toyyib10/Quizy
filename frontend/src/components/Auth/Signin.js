@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik";
 import * as yup from "yup";
+import axios from "axios"
 
 const Signup = () => {
 	const navigate = useNavigate()
@@ -14,7 +15,10 @@ const Signup = () => {
 			password: ""
 		},
 		onSubmit: (values) => {
-			console.log(values)
+			const endPoint = "http://localhost:5000/auth/login"
+			axios.post(endPoint, values).then((result) => {
+				console.log(result)
+			})
 		},
 		validationSchema: yup.object({
 			email: yup.string().required("This field is required").email("Must be an email"),
@@ -34,7 +38,7 @@ const Signup = () => {
 			</div>
 			<div className="w-100 pt-3 hold">
 					<h1 className="text-center mt-2 pb-3">Welcome Back</h1>
-				<form action="" className="w-100 h-100 px-4">
+				<form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
 					<div className="form-floating my-3">
 						<input
 							type="email"

@@ -1,17 +1,22 @@
 const express = require("express")
 const app = express()
+app.use(express.urlencoded({ extended: true}));
 const mongoose = require("mongoose")
+require("dotenv").config()
+const { mongooseConnect, expressConnect } = require("./controllers/Index.controller")
+const auth = require("./routes/Auth.route")
+const cors = require("cors")
+const questionRoute = require("./routes/Question.route")
 
-const URI = "mongodb+srv://toyyib:toyyib10@cluster0.c6xilee.mongodb.net/class?retryWrites=true&w=majority"
-mongoose.connect(URI, (err) => {
-  if(err){
-    console.log("Unable to start")
-  } else {
-    console.log("Mongoose")
-  }
-})
+app.use(cors())
+app.use(express.json({ limit: "100mb" }))
+
+const URI = process.env.URI;
+const PORT = process.env.PORT;
+
+app.use("/auth", auth)
+app.use("/quiz", questionRoute)
+mongoose.connect(URI, mongooseConnect)
 
 
-app.listen(5000, () => {
-  console.log("server started")
-})
+app.listen(PORT,expressConnect)

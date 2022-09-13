@@ -1,0 +1,9 @@
+.section{
+  width: 100%;
+  height: 100vh;
+  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
+}
+.join-input{
+  font-size: 3.3em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
