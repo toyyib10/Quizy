@@ -11,12 +11,32 @@ const Game = () => {
   const [secondanswer, setsecondanswer] = useState("");
   const [thirdanswer, setthirdanswer] = useState("");
   const [forthanswer, setforthanswer] = useState("");
-  const [firstcorrect, setfirstcorrect] = useState("");
-  const [secondcorrect, setsecondcorrect] = useState("");
-  const [thirdcorrect, setthirdcorrect] = useState("");
-  const [forthcorrect, setforthcorrect] = useState("");
-      const endPoint = "http://localhost:5000/quiz/game"
-      console.log(values)
+  const [correct, setcorrect] = useState("");
+
+  const addQuestion = () => {
+    const endPoint = "http://localhost:5000/quiz/game"
+    const quizQuestion = {
+      question , 
+      firstanswer, 
+      secondanswer,
+      forthanswer, 
+      thirdanswer, 
+      correct  
+    }
+    console.log(correct)
+    // axios.post(endPoint,quizQuestion).then((result) => {
+    //   console.log(result)
+    //   setquestion("")
+    //   setfirstanswer("") 
+    //   setsecondanswer("")
+    //   setthirdanswer("") 
+    //   setforthanswer("") 
+    //   setcorrect("")
+      
+    // })
+    window.location.reload()
+  }
+
   return (
     <>
       <header className="navbar sticky-top bg-white navbar-white px-md-0 px-lg-0 px-3 shadow d-flex ">
@@ -107,41 +127,44 @@ const Game = () => {
             <div className="w-100 d-flex justify-content-center mt-2">
               <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
                 <h2>Question</h2>
-                <input onChange={formik.handleChange} className="form-control form-control-lg mt-2" placeholder="Start typing question" name="question" type="text" required />
+                <input onChange={(e)=>setquestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={question} name="question" type="text" required />
               </div>
             </div>
-            <div className="w-100 mt-4 d-flex justify-content-between px-1 px-md-4 px-lg-4">
-              <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-danger shadow d-flex">
-                <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">A. </p>
-                <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4" placeholder="Required" onChange={formik.handleChange} name="firstanswer" type="text" required />
-                <input className="h-75 ms-1" onChange={formik.handleChange} name="firstcorrect" type="checkbox" />
+            <form action="">
+              <div className="w-100 mt-4 d-flex justify-content-between px-1 px-md-4 px-lg-4">
+                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-danger shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">A. </p>
+                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4" placeholder="Required" onChange={(e) => setfirstanswer(e.target.value)} value={firstanswer} name="firstanswer" type="text" required />
+                  <input onClick={(e) => setcorrect(e.target.value)} className="h-75 ms-1" value="A" name="correct" type="radio" />
+                </div>
+                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-success shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">B. </p>
+                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4 " placeholder="Required" onChange={(e) => setsecondanswer(e.target.value)} value={secondanswer} type="text" name="secondanswer" required />
+                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="B" name="correct" type="radio" />
+                </div>
               </div>
-              <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-success shadow d-flex">
-                <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">B. </p>
-                <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4 " placeholder="Required" onChange={formik.handleChange} type="text" name="secondanswer" required />
-                <input className="h-75 ms-1" onChange={formik.handleChange} name="secondcorrect" type="checkbox"/>
+              <div className="w-100 mt-4 d-flex justify-content-between px-2 px-md-4 px-lg-4">
+                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-warning shadow d-flex">
+                  <p className="m-0 fs-1 text-center p-lg-0 pt- p-md-0 ">
+                    C. </p>
+                  <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setthirdanswer(e.target.value)} value={thirdanswer} name="thirdanswer" type="text" />
+                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="C" name="correct" type="radio" />
+                </div>
+                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-info shadow d-flex">
+                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">D. </p>
+                  <input placeholder="Optional" value={forthanswer} name="forthanswer" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setforthanswer(e.target.value)} type="text" />
+                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="D" name="correct" type="radio" />
+                </div>
               </div>
-            </div>
-            <div className="w-100 mt-4 d-flex justify-content-between px-2 px-md-4 px-lg-4">
-              <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-warning shadow d-flex">
-                <p className="m-0 fs-1 text-center p-lg-0 pt- p-md-0 ">
-                  C. </p>
-                <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={formik.handleChange} name="thirdanswer" type="text" />
-                <input className="h-75 ms-1" name="thirdcorrect" type="checkbox" onChange={formik.handleChange} />
-              </div>
-              <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-info shadow d-flex">
-                <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">D. </p>
-                <input placeholder="Optional" name="forthanswer" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={formik.handleChange} type="text" />
-                <input className="h-75 ms-1" onChange={formik.handleChange} name="forthcorrect" type="checkbox" />
-              </div>
-            </div>
+            </form>
+            
             <div className="col-12 shadow px-3 bg-white mt-4 d-flex justify-content-between align-items-center flex-wrap rounded-2">
               <div className="overflow-auto col-md-6 my-1 col-12 bg-light p-2" style={{ height: "55px" }}>
 
               </div>
               <div className="d-flex justify-content-end col-md-6 col-12 my-2">
                 <div>
-                  <button className="btn bg-success text-white h-100 mx-3"> Add</button>
+                  <button onClick={addQuestion} className="btn bg-success text-white h-100 mx-3"> Add</button>
                 </div>
                 <div>
                   <button className="btn bg-danger h-100 mx-3 text-white">Delete</button>

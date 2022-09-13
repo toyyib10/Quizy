@@ -91,7 +91,11 @@
   background: -webkit-linear-gradient(right, #a445b2, #fa4299);
 }
 
-input[type="radio"] {
+#login[type="radio"] {
+  display: none;
+}
+
+#signup[type="radio"] {
   display: none;
 }
 
