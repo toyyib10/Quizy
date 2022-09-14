@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../../cssfiles/main.css"
 import { Link } from "react-router-dom"
-import AOS from "aos"
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Main = () => {
+  useEffect(() => {
+    Aos.init({duration:3000});
+  }, [])
   
   return (
     <>
@@ -92,27 +96,27 @@ const Main = () => {
           </nav>
 
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <div className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+            <div data-aos="flip-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4" >
               <Link to="/admin/creategame" className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Create Game
               </Link>
             </div>
-            <div className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+            <div data-aos="flip-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
              <button className="btn btn-main w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Play Demo
               </button>
             </div>
-            <div className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+            <div data-aos="flip-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
               <button className="btn btn-main w-100 rounded-1 bg-warning text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Create Quiz  
               </button>
             </div>
-            <div className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+            <div data-aos="flip-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
               <button className="btn btn-main w-100 rounded-1 bg-primary text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Join Game
               </button>
             </div>
-            <div className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+            <div data-aos="flip-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
               <button className="btn btn-main w-100 rounded-1 bg-success text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Join Quiz
               </button>

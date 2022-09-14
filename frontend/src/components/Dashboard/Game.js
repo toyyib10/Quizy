@@ -34,7 +34,7 @@ const Game = () => {
     //   setcorrect("")
       
     // })
-    window.location.reload()
+    console.log()
   }
 
   return (

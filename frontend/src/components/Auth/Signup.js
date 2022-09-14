@@ -1,34 +1,34 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom"
-import { useFormik } from "formik";
+import { useFormik } from "formik"
 import * as yup from "yup"
 import axios from "axios"
 
 const Signup = () => {
-  const formik = useFormik({
-    initialValues: {
-      firstname: "",
-      lastname: "",
-      email: "",
-      password: ""
-    },
-    onSubmit: (values) => {
-      console.log(values)
-      let details = values
-      const endPoint = "http://localhost:5000/auth/createaccount"
-      axios.post(endPoint, details)
-    },
-    validationSchema: yup.object({
-      firstname: yup.string().required("This field is required"),
-      lastname: yup.string().required("This field is required"),
-      email: yup.string().required("This field is required").email("Must be an email"),
-      password: yup.string().min(6, "Password must be at most 6 characters").max(15, "Password must be at least 15 characters").required("This field is required")
-    })
-  })
   const navigate = useNavigate()
   const logIn = () => {
     navigate("/auth/signin")
   }
+  const formik = useFormik({
+    initialValues : {
+      firstname  : "",
+      lastname: "",
+      email: "",
+      password : ""
+    },
+    onSubmit: (values) => {
+      const endPoint = "http://localhost:5000/auth/createaccount"
+      axios.post(endPoint, values).then((result) => {
+          console.log(result)
+      })
+    },
+    validationSchema : yup.object({
+      firstname: yup.string().required("This field is required"),
+      lastname: yup.string().required("This field is required"),
+      email: yup.string().required("This field is required").email("This field must be an email"),
+      password : yup.string().required("This field is required").min(6,"This field must be greater than 6").max(15,"This field must be less than 15")
+    })
+  })
   return (
     <div className="h-75 col-lg-7 col-md-9  col-11 bg-white shadow rounded-2" style={{minHeight: "80vh"}}>
       <div className="slide-controls d-flex border-bottom rounded-top-2">
@@ -46,55 +46,56 @@ const Signup = () => {
           <div className="form-floating my-2">
             <input
               type="text"
-              className={formik.errors.firstname ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
-              onChange={formik.handleChange}
+              className='form-control ps-4'
               name="firstname"
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="First Name" required />
             <label className="form-label text-start ms-2">First Name</label>
           </div> 
-          {formik.touched.firstname ? <div className="text-danger">{formik.errors.firstname}</div> : ""}
+          {formik.touched.firstname ? <div className="text-danger">{ formik.errors.firstname }</div> : ""}
+          
           <div className="form-floating my-2">
             <input
               type="text"
-              className={formik.errors.lastname ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
-              onChange={formik.handleChange}
+              className= 'form-control ps-4'
               name="lastname"
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="Last Name" required />
             <label className="form-label text-start ms-2">Last Name</label>
           </div> 
-          {formik.touched.lastname ? <div className="text-danger">{formik.errors.lastname}</div> : ""}
+          {formik.touched.lastname ? <div className="text-danger">{ formik.errors.lastname }</div> : ""}
           <div className="form-floating my-2">
             <input
               type="email"
-              className={formik.errors.email ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
-              onChange={formik.handleChange}
+              className='form-control ps-4'
               name="email"
+              onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="Email" required />
             <label className="form-label text-start ms-2">Email</label>
           </div>
-          {formik.touched.email ? <div className="text-danger">{formik.errors.email}</div> : ""}
+          {formik.touched.email ? <div className="text-danger">{ formik.errors.email }</div> : ""}
           <div className="form-floating my-2">
             <input
               type="password"
-              className={formik.errors.password ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
-              onChange={formik.handleChange}
+              className='form-control ps-4'
               name="password"
               onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
               placeholder="Password" required />
             <label className="form-label text-start ms-2">Password</label>
           </div>
-          {formik.touched.password ? <div className="text-danger">{formik.errors.password}</div> : ""}
+          {formik.touched.password ? <div className="text-danger">{ formik.errors.password }</div> : ""}
           <div className="w-100 d-flex justify-content-center pt-lg-3 pt-4">
             <button type="submit" className="btn btn-lg btn-light text-white w-75 hover">Create Account</button>
           </div>
         </form>
         <h5 className="text-center m-0 mt-lg-3 mt-4">Or Create Account With</h5>
         <div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-2 mt-3">
-          <a className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Gmail</a>
-          <a className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
+          <a href="/" className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Gmail</a>
+          <a href="/" className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
         </div>
       </div>
     </div>
