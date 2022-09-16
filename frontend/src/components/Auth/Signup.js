@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik"
 import * as yup from "yup"
@@ -9,6 +9,7 @@ const Signup = () => {
   const logIn = () => {
     navigate("/auth/signin")
   }
+  const [message, setmessage] = useState("")
   const formik = useFormik({
     initialValues : {
       firstname  : "",
@@ -19,7 +20,7 @@ const Signup = () => {
     onSubmit: (values) => {
       const endPoint = "http://localhost:5000/auth/createaccount"
       axios.post(endPoint, values).then((result) => {
-          console.log(result)
+        setmessage(result.data.message)
       })
     },
     validationSchema : yup.object({
@@ -42,6 +43,7 @@ const Signup = () => {
       </div>  
       <div className="w-100 pt-2 hold">
         <h1 className="text-center mt-1 pb-2">Welcome To Quizy</h1>  
+        { message ? <div className='text-danger fs-4 px-4'>{ message }</div> : ""}
         <form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
           <div className="form-floating my-2">
             <input
