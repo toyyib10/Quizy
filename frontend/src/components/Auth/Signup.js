@@ -27,7 +27,8 @@ const Signup = () => {
       firstname: yup.string().required("This field is required"),
       lastname: yup.string().required("This field is required"),
       email: yup.string().required("This field is required").email("This field must be an email"),
-      password : yup.string().required("This field is required").min(6,"This field must be greater than 6").max(15,"This field must be less than 15")
+      password: yup.string().required("This field is required").min(6, "This field must be greater than 6").max(15, "This field must be less than 15")
+      // must get this regex from this from debo
     })
   })
   return (
@@ -48,7 +49,7 @@ const Signup = () => {
           <div className="form-floating my-2">
             <input
               type="text"
-              className='form-control ps-4'
+              className={ formik.errors.firstname && formik.touched.firstname ? 'form-control is-invalid ps-4' : 'form-control ps-4' }
               name="firstname"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -56,11 +57,10 @@ const Signup = () => {
             <label className="form-label text-start ms-2">First Name</label>
           </div> 
           {formik.touched.firstname ? <div className="text-danger">{ formik.errors.firstname }</div> : ""}
-          
           <div className="form-floating my-2">
             <input
               type="text"
-              className= 'form-control ps-4'
+              className={ formik.errors.lastname && formik.touched.lastname ? 'form-control is-invalid ps-4' : 'form-control ps-4' }
               name="lastname"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -71,7 +71,7 @@ const Signup = () => {
           <div className="form-floating my-2">
             <input
               type="email"
-              className='form-control ps-4'
+              className={ formik.errors.email && formik.touched.email ? 'form-control is-invalid ps-4' : 'form-control ps-4' }
               name="email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -82,7 +82,7 @@ const Signup = () => {
           <div className="form-floating my-2">
             <input
               type="password"
-              className='form-control ps-4'
+              className={ formik.errors.password && formik.touched.password ? 'form-control is-invalid ps-4' : 'form-control ps-4' }
               name="password"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
@@ -96,7 +96,7 @@ const Signup = () => {
         </form>
         <h5 className="text-center m-0 mt-lg-3 mt-4">Or Create Account With</h5>
         <div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-2 mt-3">
-          <a href="/" className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Gmail</a>
+          <a href="/" className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
           <a href="/" className="btn btn-lg mt-1 mb-2 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
         </div>
       </div>

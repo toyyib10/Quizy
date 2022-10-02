@@ -67,7 +67,7 @@ const Signup = () => {
 				</form>
 				<h5 className="text-center m-0 mt-4">Or Login With</h5>
 				<div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-4 mt-4">
-					<a className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Gmail</a>
+					<a className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
 					<a className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
 				</div>
 			</div>

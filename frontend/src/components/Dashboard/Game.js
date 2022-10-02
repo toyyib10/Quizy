@@ -6,15 +6,21 @@ import * as yup from "yup";
 import axios from "axios"
 
 const Game = () => {
-  const [question, setquestion] = useState("");
+  const [preQuestion, setpreQuestion] = useState("");
   const [firstanswer, setfirstanswer] = useState("");
   const [secondanswer, setsecondanswer] = useState("");
   const [thirdanswer, setthirdanswer] = useState("");
   const [forthanswer, setforthanswer] = useState("");
   const [correct, setcorrect] = useState("");
+  const [question, setquestion] = useState("")
 
   const addQuestion = () => {
     const endPoint = "http://localhost:5000/quiz/game"
+    if (!preQuestion.endsWith("?")) {
+      setquestion(preQuestion.concat("?"))
+    } else {
+      setquestion(preQuestion)
+    }
     const quizQuestion = {
       question , 
       firstanswer, 
@@ -23,18 +29,16 @@ const Game = () => {
       thirdanswer, 
       correct  
     }
-    console.log(correct)
-    // axios.post(endPoint,quizQuestion).then((result) => {
-    //   console.log(result)
-    //   setquestion("")
-    //   setfirstanswer("") 
-    //   setsecondanswer("")
-    //   setthirdanswer("") 
-    //   setforthanswer("") 
-    //   setcorrect("")
-      
-    // })
-    console.log()
+    if (question || firstanswer || secondanswer || forthanswer || thirdanswer || correct) {
+      axios.post(endPoint,quizQuestion).then((result) => {
+        setquestion("")
+        setfirstanswer("") 
+        setsecondanswer("")
+        setthirdanswer("") 
+        setforthanswer("") 
+        setcorrect("")
+      })
+    }
   }
 
   return (
@@ -127,7 +131,7 @@ const Game = () => {
             <div className="w-100 d-flex justify-content-center mt-2">
               <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
                 <h2>Question</h2>
-                <input onChange={(e)=>setquestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={question} name="question" type="text" required />
+                <input onChange={(e)=>setpreQuestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={preQuestion} name="question" type="text" required />
               </div>
             </div>
             <form action="">
