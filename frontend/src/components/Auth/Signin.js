@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -6,6 +6,7 @@ import axios from "axios"
 
 const Signup = () => {
 	const navigate = useNavigate()
+	const [message, setmessage] = useState('')
 	const createAccount = () => {
 		navigate("/auth/createaccount")
 	}
@@ -17,7 +18,11 @@ const Signup = () => {
 		onSubmit: (values) => {
 			const endPoint = "http://localhost:5000/auth/login"
 			axios.post(endPoint, values).then((result) => {
-				console.log(result)
+				if (result.data.status) {
+					navigate("/admin/")
+				} else {
+					setmessage(result.data.message)
+				}
 			})
 		},
 		validationSchema: yup.object({
@@ -37,12 +42,13 @@ const Signup = () => {
 				style = {{borderRadius: "5px 0px 0px 0px"}}> </div>
 			</div>
 			<div className="w-100 pt-3 hold">
-					<h1 className="text-center mt-2 pb-3">Welcome Back</h1>
+				<h1 className="text-center mt-2 pb-3">Welcome Back</h1>
+				<h5 className="mx-4 mt-1 pb-2 alert alert-danger">{message}</h5>
 				<form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
 					<div className="form-floating my-3">
 						<input
 							type="email"
-							className={formik.errors.email ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
+							className={formik.touched.email && formik.errors.email ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
 							onChange={formik.handleChange}
 							name="email"
 							onBlur={formik.handleBlur}
@@ -53,7 +59,7 @@ const Signup = () => {
 					<div className="form-floating my-3">
 						<input
 							type="password"
-							className={formik.errors.password ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
+							className={formik.touched.password && formik.errors.password ? 'form-control ps-4 is-invalid' : 'form-control ps-4'}
 							onChange={formik.handleChange}
 							name="password"
 							onBlur={formik.handleBlur}
@@ -62,13 +68,13 @@ const Signup = () => {
 					</div>
 					{formik.touched.password ? <div className="text-danger">{formik.errors.password}</div> : ""}
 					<div className="w-100 d-flex justify-content-center pt-4">
-						<button className="btn btn-lg btn-light text-white w-75 hover">Login In</button>
+						<button type='submit' className="btn btn-lg btn-light text-white w-75 hover">Login In</button>
 					</div>
 				</form>
 				<h5 className="text-center m-0 mt-4">Or Login With</h5>
 				<div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-4 mt-4">
-					<a className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
-					<a className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
+					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
+					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
 				</div>
 			</div>
 		</div>

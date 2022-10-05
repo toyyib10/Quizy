@@ -20,6 +20,15 @@ userSchema.pre("save", function (next) {
   })
 })
 
+userSchema.methods.authenticateUser = function (password,callback) {
+  bcrypt.compare(password, this.password, (err, check) => {
+    if (!err) {
+      callback(err,check)
+    } else {
+      next()
+    }
+  })
+}
 let userModel = mongoose.model("User_tbs",userSchema)
 
 module.exports = userModel;

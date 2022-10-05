@@ -21,6 +21,9 @@ const Signup = () => {
       const endPoint = "http://localhost:5000/auth/createaccount"
       axios.post(endPoint, values).then((result) => {
         setmessage(result.data.message)
+        if (result.data.status === true) {
+          navigate("/auth/signin")
+        }
       })
     },
     validationSchema : yup.object({
@@ -28,7 +31,6 @@ const Signup = () => {
       lastname: yup.string().required("This field is required"),
       email: yup.string().required("This field is required").email("This field must be an email"),
       password: yup.string().required("This field is required").min(6, "This field must be greater than 6").max(15, "This field must be less than 15")
-      // must get this regex from this from debo
     })
   })
   return (
@@ -44,7 +46,7 @@ const Signup = () => {
       </div>  
       <div className="w-100 pt-2 hold">
         <h1 className="text-center mt-1 pb-2">Welcome To Quizy</h1>  
-        { message ? <div className='text-danger fs-4 px-4'>{ message }</div> : ""}
+        <h5 className="mx-4 pb-2 alert alert-danger">{message}</h5>
         <form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
           <div className="form-floating my-2">
             <input
