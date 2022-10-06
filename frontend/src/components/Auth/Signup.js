@@ -46,7 +46,7 @@ const Signup = () => {
       </div>  
       <div className="w-100 pt-2 hold">
         <h1 className="text-center mt-1 pb-2">Welcome To Quizy</h1>  
-        <h5 className="mx-4 pb-2 alert alert-danger">{message}</h5>
+        {message && <h5 className="mx-4 pb-2 alert alert-danger">{message}</h5>}
         <form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
           <div className="form-floating my-2">
             <input

@@ -1,5 +1,6 @@
 const userModel = require("../models/User.model")
 const jwt = require("jsonwebtoken")
+const secret = process.env.SECRET
 const postLogin = (req, res) => {
   let eMail = req.body.email
   let password = req.body.password
@@ -13,7 +14,8 @@ const postLogin = (req, res) => {
             res.status(501).send({message:"Unable to log in "})
           } else {
             if (check) {
-              res.status(200).send({message:"", status:true})
+              let token = jwt.sign({eMail}, secret, {expiresIn:"1d"})
+              res.status(200).send({message:"", token, status:true})
             } else {
               res.send({message:"Incorrect password", status:false})
             }
@@ -49,4 +51,16 @@ const postCreateAccount = (req, res) => {
   })
 }
 
-module.exports = { postLogin, postCreateAccount}
+const getDashboard = (req, res) => {
+  const [, token] = req.headers.authorization.split(" ")
+  jwt.verify(token, secret, (err,result) => {
+    if (err) {
+      res.send({ message : "err occured"})
+    } else {
+      let email = result.eMail;
+      res.send({email:email, status: true})
+    }
+  })
+}
+
+module.exports = { postLogin, postCreateAccount,getDashboard}

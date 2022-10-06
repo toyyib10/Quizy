@@ -7,6 +7,7 @@ import axios from "axios"
 const Signup = () => {
 	const navigate = useNavigate()
 	const [message, setmessage] = useState('')
+	const endPoint = "http://localhost:5000/auth/login"
 	const createAccount = () => {
 		navigate("/auth/createaccount")
 	}
@@ -16,10 +17,11 @@ const Signup = () => {
 			password: ""
 		},
 		onSubmit: (values) => {
-			const endPoint = "http://localhost:5000/auth/login"
 			axios.post(endPoint, values).then((result) => {
-				if (result.data.status) {
+				if (!result.data.status) {
+					localStorage.token = result.data.token
 					navigate("/admin/")
+					alert("work")
 				} else {
 					setmessage(result.data.message)
 				}
@@ -43,7 +45,7 @@ const Signup = () => {
 			</div>
 			<div className="w-100 pt-3 hold">
 				<h1 className="text-center mt-2 pb-3">Welcome Back</h1>
-				<h5 className="mx-4 mt-1 pb-2 alert alert-danger">{message}</h5>
+				{message && <h5 className="mx-4 mt-1 pb-2 alert alert-danger">{message}</h5>}
 				<form action="" className="w-100 h-100 px-4" onSubmit={formik.handleSubmit}>
 					<div className="form-floating my-3">
 						<input
@@ -68,7 +70,7 @@ const Signup = () => {
 					</div>
 					{formik.touched.password ? <div className="text-danger">{formik.errors.password}</div> : ""}
 					<div className="w-100 d-flex justify-content-center pt-4">
-						<button type='submit' className="btn btn-lg btn-light text-white w-75 hover">Login In</button>
+						<button type="submit" className="btn btn-lg btn-light text-white w-75 hover">Login</button>
 					</div>
 				</form>
 				<h5 className="text-center m-0 mt-4">Or Login With</h5>

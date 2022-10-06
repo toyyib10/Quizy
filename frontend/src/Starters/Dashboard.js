@@ -1,9 +1,10 @@
-import React from 'react'
-import { Route, Routes, Navigate } from "react-router-dom"
+import React, { useEffect } from 'react'
+import { Route, Routes, useNavigate } from "react-router-dom"
 import Main from "../components/Dashboard/Main"
 import Quiz from '../components/Dashboard/Quiz';
 import Game from '../components/Dashboard/Game';
 import Notfound from "./Notfound"
+import axios from 'axios';
 
 const Dashboard = () => {
   const toggleMenu = () => {
@@ -12,6 +13,25 @@ const Dashboard = () => {
     navigation.classList.toggle('active')
     toggle.classList.toggle('active')
   }
+  const navigate = useNavigate()
+  const endpoint = "http://localhost:5000/auth/dashboard"
+  let token = localStorage.token
+  useEffect(() => {
+    axios.get(endpoint, {
+      headers: {
+        "authorization": `Bearer ${token}`,
+        "Content-type": "application/json",
+        "Accept": "application/json"
+      }
+    }).then((result) => {
+      if (!result.data.status) {
+        navigate("/auth/signin")
+      } else {
+      }
+    })
+  }, [])
+  
+
   return (
     <>
       <Routes>
