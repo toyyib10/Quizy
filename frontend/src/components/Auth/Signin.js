@@ -18,10 +18,9 @@ const Signup = () => {
 		},
 		onSubmit: (values) => {
 			axios.post(endPoint, values).then((result) => {
-				if (!result.data.status) {
+				if (result.data.status) {
 					localStorage.token = result.data.token
-					navigate("/admin/")
-					alert("work")
+					navigate("/admin")
 				} else {
 					setmessage(result.data.message)
 				}
@@ -29,7 +28,7 @@ const Signup = () => {
 		},
 		validationSchema: yup.object({
 			email: yup.string().required("This field is required").email("Must be an email"),
-			password: yup.string().min(6, "Password must be at most 6 characters").max(15, "Password must be at least 15 characters").required("This field is required")
+			password: yup.string().min(6, "Password must be at least 6 characters").max(15, "Password must be at most 15 characters").required("This field is required")
 		}),
 	})
 	return (
@@ -75,8 +74,8 @@ const Signup = () => {
 				</form>
 				<h5 className="text-center m-0 mt-4">Or Login With</h5>
 				<div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-4 mt-4">
-					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="fhfhh"/> Google</a>
-					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="fhfhh"/> FaceBook</a>
+					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="Google png"/> Google</a>
+					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="Facebook png"/> FaceBook</a>
 				</div>
 			</div>
 		</div>

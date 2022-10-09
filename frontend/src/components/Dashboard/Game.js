@@ -1,12 +1,9 @@
-import {useState } from 'react'
+import { useState } from 'react'
 import "../../cssfiles/main.css"
 import {Link} from "react-router-dom"
-import { useFormik } from "formik"
-import * as yup from "yup";
 import axios from "axios"
 
 const Game = () => {
-  const [preQuestion, setpreQuestion] = useState("");
   const [firstanswer, setfirstanswer] = useState("");
   const [secondanswer, setsecondanswer] = useState("");
   const [thirdanswer, setthirdanswer] = useState("");
@@ -16,20 +13,15 @@ const Game = () => {
 
   const addQuestion = () => {
     const endPoint = "http://localhost:5000/quiz/game"
-    if (!preQuestion.endsWith("?")) {
-      setquestion(preQuestion.concat("?"))
-    } else {
-      setquestion(preQuestion)
-    }
-    const quizQuestion = {
-      question , 
-      firstanswer, 
-      secondanswer,
-      forthanswer, 
-      thirdanswer, 
-      correct  
-    }
-    if (question || firstanswer || secondanswer || forthanswer || thirdanswer || correct) {
+    if (question && firstanswer && secondanswer && correct) {
+      const quizQuestion = {
+        question , 
+        firstanswer, 
+        secondanswer,
+        forthanswer, 
+        thirdanswer, 
+        correct  
+      }
       axios.post(endPoint,quizQuestion).then((result) => {
         setquestion("")
         setfirstanswer("") 
@@ -131,7 +123,7 @@ const Game = () => {
             <div className="w-100 d-flex justify-content-center mt-2">
               <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
                 <h2>Question</h2>
-                <input onChange={(e)=>setpreQuestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={preQuestion} name="question" type="text" required />
+                <input onChange={(e)=>setquestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={question} name="question" type="text" required />
               </div>
             </div>
             <form action="">

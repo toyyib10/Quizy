@@ -10,7 +10,7 @@ import LandingPage from "./Starters/LandingPage"
 import Questions from "./Starters/Questions"
 
 const App = () => {
-  const token = localStorage.token
+  
   return (
     <>
       <Routes>
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/signin" element={<Navigate to="/auth/" />} />
         <Route path="/signup" element={<Navigate to="/auth/createaccount"/>} />
         <Route path="/auth/*" element={<Auth />} />
-        <Route path="/admin/*" element={token ? <Dashboard /> : <Navigate to="/auth/" />} /> 
+        <Route path="/admin/*" element={<Dashboard />} /> 
         <Route path="/joinquiz" element={<JoinQuiz />} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/*" element={<Notfound />} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Main from "../components/Dashboard/Main"
 import Quiz from '../components/Dashboard/Quiz';
@@ -14,9 +14,9 @@ const Dashboard = () => {
     toggle.classList.toggle('active')
   }
   const navigate = useNavigate()
-  const endpoint = "http://localhost:5000/auth/dashboard"
-  let token = localStorage.token
   useEffect(() => {
+    const endpoint = "http://localhost:5000/auth/dashboard"
+    let token = localStorage.token
     axios.get(endpoint, {
       headers: {
         "authorization": `Bearer ${token}`,
@@ -26,11 +26,9 @@ const Dashboard = () => {
     }).then((result) => {
       if (!result.data.status) {
         navigate("/auth/signin")
-      } else {
       }
     })
   }, [])
-  
 
   return (
     <>
