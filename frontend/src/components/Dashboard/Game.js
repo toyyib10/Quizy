@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import "../../cssfiles/main.css"
 import {Link} from "react-router-dom"
 import axios from "axios"
@@ -10,10 +10,16 @@ const Game = () => {
   const [forthanswer, setforthanswer] = useState("");
   const [correct, setcorrect] = useState("");
   const [question, setquestion] = useState("")
-  // const [allQuestion, setallQuestion] = useState([])
+  const [count, setcount] = useState(0)
+  const [allQuestion, setallQuestion] = useState([])
   const endPoint = "http://localhost:5000/quiz/game"
+  useEffect(() => {
+    setallQuestion(JSON.parse(localStorage.questions))
+  }, [count])
+  
 
   const addQuestion = () => {
+    
     if (question && firstanswer && secondanswer && correct) {
       const quizQuestion = {
         question , 
@@ -27,10 +33,12 @@ const Game = () => {
         console.log(result.data)
         if (!localStorage.questions) {
           localStorage.questions = JSON.stringify([result.data])
+          setcount(count)
         } else {
           let preQuestion = JSON.parse(localStorage.questions)
           localStorage.questions = JSON.stringify([...preQuestion,result.data])
         }
+        setcount(count + 1)
         setquestion("")
         setfirstanswer("") 
         setsecondanswer("")
@@ -38,7 +46,21 @@ const Game = () => {
         setforthanswer("") 
         setcorrect("")
       })
+    } else {
+      alert("hhh")
     }
+  } 
+  const deleteQuestion = () => {
+    alert("worked ")
+  }
+  const goTo = (index) => {
+    let requestedQuestion = allQuestion.find((item, i) => index === i)
+    setcorrect(requestedQuestion.correct)
+    setquestion(requestedQuestion.question)
+    setfirstanswer(requestedQuestion.firstanswer)
+    setforthanswer(requestedQuestion.forthanswer)
+    setsecondanswer(requestedQuestion.secondanswer)
+    setthirdanswer(requestedQuestion.thirdanswer)
   }
 
   return (
@@ -163,15 +185,19 @@ const Game = () => {
             </form>
             
             <div className="col-12 shadow px-3 bg-white mt-4 d-flex justify-content-between align-items-center flex-wrap rounded-2">
-              <div className="overflow-auto col-md-6 my-1 col-12 bg-light p-2" style={{ height: "55px" }}>
-
+              <div className="col-md-6 my-1 col-12 bg-light p-1 d-flex" style={{ height: "55px" , overflowY: "auto"}}>
+                {
+                  allQuestion.map((item,index) =>
+                    <button onClick={() => goTo(index)} className='btn btn-primary rounded-1 h-100 text-white mx-1' style={{ width: "50px" }}>{ index + 1 }</button>
+                  )
+                }
               </div>
               <div className="d-flex justify-content-end col-md-6 col-12 my-2">
                 <div>
                   <button onClick={addQuestion} className="btn bg-success text-white h-100 mx-3"> Add</button>
                 </div>
                 <div>
-                  <button className="btn bg-danger h-100 mx-3 text-white">Delete</button>
+                  <button onClick={deleteQuestion} className="btn bg-danger h-100 mx-3 text-white">Delete</button>
                 </div>
                 <div>
                   <button className="btn btn-light bg-light mx-3 h-100"> Save</button>
