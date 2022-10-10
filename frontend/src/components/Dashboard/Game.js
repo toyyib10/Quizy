@@ -10,9 +10,10 @@ const Game = () => {
   const [forthanswer, setforthanswer] = useState("");
   const [correct, setcorrect] = useState("");
   const [question, setquestion] = useState("")
+  // const [allQuestion, setallQuestion] = useState([])
+  const endPoint = "http://localhost:5000/quiz/game"
 
   const addQuestion = () => {
-    const endPoint = "http://localhost:5000/quiz/game"
     if (question && firstanswer && secondanswer && correct) {
       const quizQuestion = {
         question , 
@@ -22,7 +23,14 @@ const Game = () => {
         thirdanswer, 
         correct  
       }
-      axios.post(endPoint,quizQuestion).then((result) => {
+      axios.post(endPoint, quizQuestion).then((result) => {
+        console.log(result.data)
+        if (!localStorage.questions) {
+          localStorage.questions = JSON.stringify([result.data])
+        } else {
+          let preQuestion = JSON.parse(localStorage.questions)
+          localStorage.questions = JSON.stringify([...preQuestion,result.data])
+        }
         setquestion("")
         setfirstanswer("") 
         setsecondanswer("")

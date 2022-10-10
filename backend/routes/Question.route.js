@@ -2,8 +2,8 @@ const express = require("express")
 const router = express.Router()
 
 router.post("/game", (req, res) => {
+  res.send(req.body)
   console.log(req.body)
-  res.send(200)
 })
 
-module.exports = router
+module.exports = router;

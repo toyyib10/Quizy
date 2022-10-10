@@ -14,21 +14,21 @@ const Dashboard = () => {
     toggle.classList.toggle('active')
   }
   const navigate = useNavigate()
-  useEffect(() => {
-    const endpoint = "http://localhost:5000/auth/dashboard"
-    let token = localStorage.token
-    axios.get(endpoint, {
-      headers: {
-        "authorization": `Bearer ${token}`,
-        "Content-type": "application/json",
-        "Accept": "application/json"
-      }
-    }).then((result) => {
-      if (!result.data.status) {
-        navigate("/auth/signin")
-      }
-    })
-  }, [])
+  // useEffect(() => {
+  //   const endpoint = "http://localhost:5000/auth/dashboard"
+  //   let token = localStorage.token
+  //   axios.get(endpoint, {
+  //     headers: {
+  //       "authorization": `Bearer ${token}`,
+  //       "Content-type": "application/json",
+  //       "Accept": "application/json"
+  //     }
+  //   }).then((result) => {
+  //     if (!result.data.status) {
+  //       navigate("/auth/signin")
+  //     }
+  //   })
+  // }, [])
 
   return (
     <>
