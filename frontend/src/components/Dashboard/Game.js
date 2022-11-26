@@ -12,9 +12,17 @@ const Game = () => {
   const [question, setquestion] = useState("")
   const [count, setcount] = useState(0)
   const [allQuestion, setallQuestion] = useState([])
-  const endPoint = "http://localhost:5000/quiz/game"
+  const [ind, setindex] = useState("")
+  const endPoint = "http://localhost:5000/quiz/game/addQuestion"
+  const deletePoint = "http://localhost:5000/quiz/game/deleteQuestion"
+  
   useEffect(() => {
-    setallQuestion(JSON.parse(localStorage.questions))
+    if (localStorage.questions) {
+      setallQuestion(JSON.parse(localStorage.questions))
+    } else {
+      setallQuestion([])
+    }
+    
   }, [count])
   
 
@@ -50,10 +58,26 @@ const Game = () => {
       alert("hhh")
     }
   } 
-  const deleteQuestion = () => {
-    alert("worked ")
+  const deleteQuestion = (quizQuestion, index) => {
+    if (allQuestion) {
+      alert("work")
+      axios.post(deletePoint, {allQuestion , ind }).then((result) => {
+        localStorage.questions = JSON.stringify(result.data)
+        setallQuestion(result.data)
+        setcount(count - 1)
+        setquestion("")
+        setfirstanswer("") 
+        setsecondanswer("")
+        setthirdanswer("") 
+        setforthanswer("") 
+        setcorrect("")
+      })
+    } else {
+      alert("worked")
+    }
   }
   const goTo = (index) => {
+    setindex(index)
     let requestedQuestion = allQuestion.find((item, i) => index === i)
     setcorrect(requestedQuestion.correct)
     setquestion(requestedQuestion.question)
@@ -197,7 +221,7 @@ const Game = () => {
                   <button onClick={addQuestion} className="btn bg-success text-white h-100 mx-3"> Add</button>
                 </div>
                 <div>
-                  <button onClick={deleteQuestion} className="btn bg-danger h-100 mx-3 text-white">Delete</button>
+                  <button onClick={() => deleteQuestion()} className="btn bg-danger h-100 mx-3 text-white">Delete</button>
                 </div>
                 <div>
                   <button className="btn btn-light bg-light mx-3 h-100"> Save</button>
