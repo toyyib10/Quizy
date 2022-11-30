@@ -218,17 +218,34 @@ const Game = () => {
               </div>
               <div className="d-flex justify-content-end col-md-6 col-12 my-2">
                 <div>
-                  <button onClick={addQuestion} className="btn bg-success text-white h-100 mx-3"> Add</button>
+                  <button onClick={addQuestion} className="btn btn-success h-100 mx-3"> Add</button>
                 </div>
                 <div>
-                  <button onClick={() => deleteQuestion()} className="btn bg-danger h-100 mx-3 text-white">Delete</button>
+                  <button onClick={() => deleteQuestion()} className="btn btn-danger h-100 mx-3">Delete</button>
                 </div>
                 <div>
-                  <button className="btn btn-light bg-light mx-3 h-100"> Save</button>
+                  <button type="button"  className="btn btn-primary mx-3 h-100" data-bs-toggle="modal" data-bs-target="#saveQuestion"> Save</button>
                 </div>
               </div>
             </div>
           </main>
+        </div>
+      </div>
+    <div class="modal fade" id="saveQuestion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="saveQuestionLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLiveLabel">Extra Information</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save Game</button>
+            </div>
+          </div>
         </div>
       </div>
     </>
