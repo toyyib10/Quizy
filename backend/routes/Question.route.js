@@ -1,21 +1,11 @@
 const express = require("express")
 const router = express.Router()
+const { addQuestion, deleteQuestion, saveQuiz } = require("../controllers/Question.controller")
 
-router.post("/game/addQuestion", (req, res) => {
-  if (req.body.question.endsWith("?")) {
-    res.send(req.body)
-  } else {
-    let { question, firstanswer, secondanswer, forthanswer, thirdanswer, correct } = req.body
-    question = question + "?"
-    let data = { question, firstanswer, secondanswer, forthanswer, thirdanswer, correct }
-    res.send(data)
-  }
-})
+router.post("/addQuestion", addQuestion)
 
-router.post("/game/deleteQuestion", (req, res) => {
-  const { allQuestion, ind } = req.body;
-  const data = allQuestion.filter((item, index) => index != ind)
-  res.send(data)
-})
+router.post("/deleteQuestion", deleteQuestion)
+
+router.post("/saveQuiz", saveQuiz)
 
 module.exports = router;

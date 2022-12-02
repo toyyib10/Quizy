@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from 'react'
 import { Route, Routes, useNavigate } from "react-router-dom"
 import Main from "../components/Dashboard/Main"
 import Quiz from '../components/Dashboard/Quiz';
-import Game from '../components/Dashboard/Game';
 import Notfound from "./Notfound"
-import axios from 'axios';
 
 const Dashboard = () => {
   const toggleMenu = () => {
@@ -35,7 +32,6 @@ const Dashboard = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/createquiz" element={<Quiz />} />
-        <Route path="/creategame" element={<Game />} />
         <Route path="/*" element={<Notfound/>}/>
       </Routes>
     </>

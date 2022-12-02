@@ -1,11 +1,11 @@
 const mongoose = require("mongoose")
 
-const questionSchema = mongoose.Schema({
-  question: String,
-  firstanswer: String,
-  secondanswer: String,
-  thirdanswer: String,
-  forthanswer: String,
-  email: String,
-  correct: String,
+const quizSchema = mongoose.Schema({
+  questions: Array,
+  seconds: String,
+  quizName: String
 })
+
+let quizModel = mongoose.model("quiz_tbs",quizSchema)
+
+module.exports = quizModel;

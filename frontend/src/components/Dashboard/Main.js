@@ -96,31 +96,21 @@ const Main = () => {
           </nav>
 
           <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <div data-aos="fade-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4" >
-              <Link to="/admin/creategame" className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
-                Create Game
-              </Link>
-            </div>
             <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
              <button className="btn btn-main w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Play Demo
               </button>
             </div>
             <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-              <button className="btn btn-main w-100 rounded-1 bg-warning text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+              <Link to="/admin/createquiz" className="btn btn-main w-100 rounded-1 bg-warning text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Create Quiz  
-              </button>
+              </Link>
             </div>
-            <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-              <button className="btn btn-main w-100 rounded-1 bg-primary text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
-                Join Game
-              </button>
-            </div>
-            <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-              <button className="btn btn-main w-100 rounded-1 bg-success text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+            <div data-aos="fade-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2" >
+              <button className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
                 Join Quiz
               </button>
-            </div>      
+            </div>   
           </main>
         </div>
       </div>
