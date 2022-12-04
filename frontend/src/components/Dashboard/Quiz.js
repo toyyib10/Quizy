@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import "../../cssfiles/main.css"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { useFormik } from "formik"
 
@@ -18,7 +18,9 @@ const Game = () => {
   const endPoint = "http://localhost:5000/quiz/addQuestion"
   const deletePoint = "http://localhost:5000/quiz/deleteQuestion"
   const savePoint = "http://localhost:5000/quiz/saveQuiz"
-  
+  const checkPoint = "http://localhost:5000/auth/dashboard"
+  const navigate = useNavigate()
+
   useEffect(() => {
     if (localStorage.questions) {
       setallQuestion(JSON.parse(localStorage.questions))
@@ -34,9 +36,23 @@ const Game = () => {
       quizTime: ""
     },
     onSubmit: (values) => {
-      let quiz = { ...values, allQuestion }
-      axios.post(savePoint, quiz).then((result) => {
-        console.log(result)
+      let token = localStorage.token
+      axios.get(checkPoint, {
+        headers: {
+          "authorization": `Bearer ${token}`,
+          "Content-type": "application/json",
+          "Accept": "application/json"
+        }
+      }).then((result) => {
+        let email = result.data.email;
+        let quiz = { ...values, allQuestion, email}
+        axios.post(savePoint, quiz).then((result) => {
+          if (result.data) {
+            console.log(result.data)
+            localStorage.removeItem('questions')
+            navigate("/createquiz/successful")
+          }
+        })
       })
     }
   })
@@ -270,7 +286,7 @@ const Game = () => {
                 {modal ?
                   <>
                       <div className='d-flex justify-content-between mb-1'>
-                        <h4>Name of quiz?</h4>
+                        <h5>Name of quiz?</h5>
                         <input
                           className='form-control-sm'
                           name="quizName"
@@ -278,11 +294,11 @@ const Game = () => {
                           type="text" required/>
                       </div>
                       <div className='d-flex justify-content-between my-2'>
-                        <h4>Seconds per question?</h4>
+                        <h5>Seconds per question?</h5>
                         <input className='form-control-sm'
                           name="quizTime"
                           onChange={formik.handleChange}
-                          type="text" required/>
+                          type="number" required/>
                       </div>
                   </> : <>You have not created any questions yet</>}
               </div>

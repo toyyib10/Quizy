@@ -8,8 +8,7 @@ import "../cssfiles/sign.css"
 const Auth = () => {
   return (
     <>
-      {/* twillo */}
-      < section className = "w-100 d-flex justify-content-center align-items-center body">
+      <section className="w-100 d-flex justify-content-center align-items-center body">
         <Routes>
           <Route path="/" element={<Navigate to="/auth/signin"/>}/>
           <Route path="/signin" element={<Signin/>}/>

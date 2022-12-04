@@ -20,12 +20,12 @@ const deleteQuestion = (req, res) => {
 const saveQuiz = (req, res) => {
   let quizQuestion = req.body;
   let quiz = new quizModel(quizQuestion)
-  quiz.save((err) => {
+  quiz.save((err, result) => {
     if (err) {
       console.log(err)
     } else {
-      console.log("worked")
-      res.send("worked")
+      console.log(result)
+      res.send(result)
     }
   })
 }
