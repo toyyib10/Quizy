@@ -50,7 +50,7 @@ const Game = () => {
           if (result.data) {
             console.log(result.data)
             localStorage.removeItem('questions')
-            navigate("/createquiz/successful")
+            navigate("/admin/createquiz/successful")
           }
         })
       })
