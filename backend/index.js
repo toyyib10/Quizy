@@ -6,7 +6,7 @@ require("dotenv").config()
 const { mongooseConnect, expressConnect } = require("./controllers/Index.controller")
 const auth = require("./routes/Auth.route")
 const cors = require("cors")
-const questionRoute = require("./routes/Question.route")
+const quizRoute = require("./routes/Quiz.route")
 
 app.use(cors())
 app.use(express.json({ limit: "100mb" }))
@@ -15,7 +15,7 @@ const URI = process.env.URI;
 const PORT = process.env.PORT;
 
 app.use("/auth", auth)
-app.use("/quiz", questionRoute)
+app.use("/quiz", quizRoute)
 mongoose.connect(URI, mongooseConnect)
 
 

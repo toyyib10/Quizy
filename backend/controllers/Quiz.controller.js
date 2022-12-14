@@ -30,4 +30,12 @@ const saveQuiz = (req, res) => {
   })
 }
 
-module.exports = { addQuestion, deleteQuestion, saveQuiz}
+const savePin = (req, res) => {
+  let eMail = req.body.email
+  let pin = req.body.pin
+  quizModel.findOne({ email: eMail }, (err, result) => {
+    console.log(result)
+  })
+}
+
+module.exports = { addQuestion, deleteQuestion, saveQuiz, savePin}
