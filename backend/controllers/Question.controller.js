@@ -1,4 +1,4 @@
-const quizModel = require("../models/Question.model")
+const quizModel = require("../models/Quiz.model")
 
 const addQuestion = (req, res) => {
   if (req.body.question.endsWith("?")) {

@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Success = () => {
+  const [title1, settitle1] = useState("Copy link")
+  const [title2, settitle2] = useState("Copy pin")
+  const [colorLink, setcolorLink] = useState("black")
+  const [colorPin, setcolorPin] = useState("black")
+  const [pin, setPin] = useState("")
+
+  const copyLink = () => {
+    let link = "http://localhost:3000/joinquiz"
+    navigator.clipboard.writeText(link)
+    setcolorLink("Green")
+    settitle1("Link copied")
+  }
+
+  const copyPin = () => {
+    let pin = "6509"
+    navigator.clipboard.writeText(pin)
+    setcolorPin("Green")
+    settitle2("Pin copied")
+  }
+
+  const generate = () => {
+    setPin(String(Math.floor(Math.random()*9999)))
+  }
+
   return (
     <>
       <section className='w-100 d-flex align-content-center justify-content-center flex-column' style={{ "height": "100vh" }}>
@@ -12,7 +36,7 @@ const Success = () => {
         </div>
         <div className='d-flex align-content-start justify-content-center my-3'>
           <div className='fs-4'>Generate quiz link</div>
-          <button className='btn ms-2 btn-success btn-sm' data-bs-toggle="modal" data-bs-target="#staticBackdropLive" type='button'>Generate</button>
+          <button className='btn ms-2 btn-success btn-sm' data-bs-toggle="modal" data-bs-target="#statiecBackdropLive" onClick={ generate }  type='button'>Generate</button>
         </div>
         <div className='d-flex align-content-center justify-content-center my-3'>
           <div className='fs-4'>Back to home page</div>
@@ -27,12 +51,15 @@ const Success = () => {
             </div>
             <div class="modal-body">
               <div className='d-flex justify-content-between'>
-                <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz link" value="http://localhost:3000/admin/createquiz/successful" disabled/>
-                <button  className='btn mx-1'  type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Share link">s</button>
+                <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz link" value="http://localhost:3000/joinquiz" disabled/>
+                <button className='btn mx-1' type="button" data-bs-toggle="tooltip" data-bs-placement="right" onClick={copyLink} title={title1}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill={colorLink} d="M5 22q-.825 0-1.413-.587Q3 20.825 3 20V6h2v14h11v2Zm4-4q-.825 0-1.412-.587Q7 16.825 7 16V4q0-.825.588-1.413Q8.175 2 9 2h9q.825 0 1.413.587Q20 3.175 20 4v12q0 .825-.587 1.413Q18.825 18 18 18Z" /></svg>
+                </button>
               </div>
               <div className='d-flex justify-content-between mt-4'>
                 <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz pin" value="6509" disabled/>
-                <button className='btn mx-1'  type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Share pin">s</button>
+                <button className='btn mx-1' type="button" data-bs-toggle="tooltip" data-bs-placement="right" onClick={copyPin} title={title2}>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill={colorPin} d="M5 22q-.825 0-1.413-.587Q3 20.825 3 20V6h2v14h11v2Zm4-4q-.825 0-1.412-.587Q7 16.825 7 16V4q0-.825.588-1.413Q8.175 2 9 2h9q.825 0 1.413.587Q20 3.175 20 4v12q0 .825-.587 1.413Q18.825 18 18 18Z" /></svg></button>
               </div>
             </div>  
             <div class="modal-footer">

@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/signup" element={<Navigate to="/auth/createaccount"/>} />
         <Route path="/auth/*" element={<Auth />} />
         <Route path="/admin/*" element={<Dashboard />} /> 
-        <Route path="/joinquiz" element={<JoinQuiz />} />
+        <Route path="/joinquiz/*" element={<JoinQuiz />} />
         <Route path="/questions" element={<Questions/>} />
         <Route path="/*" element={<Notfound />} />
       </Routes>

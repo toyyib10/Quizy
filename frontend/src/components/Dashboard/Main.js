@@ -107,9 +107,10 @@ const Main = () => {
               </Link>
             </div>
             <div data-aos="fade-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2" >
-              <button className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+              <Link to="/joinquiz
+              " className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{ fontSize: "2.5em" }}>
                 Join Quiz
-              </button>
+              </Link>
             </div>   
           </main>
         </div>
