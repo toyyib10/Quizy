@@ -33,8 +33,12 @@ const saveQuiz = (req, res) => {
 const savePin = (req, res) => {
   let eMail = req.body.email;
   let pin = req.body.pin;
-  quizModel.findOneAndUpdate({ email: eMail },{pin}, (err, result) => {
-    console.log(result)
+  quizModel.findOneAndUpdate({ email: eMail }, { pin }, (err, result) => {
+    if (result) {
+      res.send({ status: true })
+    } else {
+      res.send({ status: false })
+    }
   })
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from "react-router-dom"
 
 const Success = () => {
   const [title1, settitle1] = useState("Copy link")
@@ -8,6 +9,7 @@ const Success = () => {
   const [colorPin, setcolorPin] = useState("black")
   const [pin, setPin] = useState("")
   const [email, setEmail] = useState("")
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
     const endpoint = "http://localhost:5000/auth/dashboard"
@@ -38,11 +40,15 @@ const Success = () => {
   }
 
   const generate = () => {
-    const endPoint = "http://localhost:5000/quiz/savePin"
-    setPin(String(Math.floor(1000 + Math.random() * 9000)))
-    axios.post(endPoint, { pin, email }).then((err, result) => {
-      console.log(result)
-    })
+    if (!done) {
+      const endPoint = "http://localhost:5000/quiz/savePin"
+      setPin(String(Math.floor(1000 + Math.random() * 9000)))
+      axios.post(endPoint, { pin, email }).then((err, result) => {
+        if (result.data.status) {
+          setDone(true)
+        }
+      })
+    }
   }
 
   return (
@@ -60,7 +66,7 @@ const Success = () => {
         </div>
         <div className='d-flex align-content-center justify-content-center my-3'>
           <div className='fs-4'>Back to home page</div>
-          <button className='btn ms-2 btn-danger btn-sm'>Home Page</button>
+          {done? <Link to="/admin" className='btn ms-2 btn-danger btn-sm'>Home Page</Link>:<button disabled className='btn ms-2 btn-danger btn-sm'>Home Page</button>}
         </div>
       </section>
       <div class="modal fade" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
