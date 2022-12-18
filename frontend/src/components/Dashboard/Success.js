@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Success = () => {
+  const navigate = useNavigate()
   const [title1, settitle1] = useState("Copy link")
   const [title2, settitle2] = useState("Copy pin")
   const [colorLink, setcolorLink] = useState("black")
@@ -43,12 +44,16 @@ const Success = () => {
     if (!done) {
       const endPoint = "http://localhost:5000/quiz/savePin"
       setPin(String(Math.floor(1000 + Math.random() * 9000)))
-      axios.post(endPoint, { pin, email }).then((err, result) => {
+      axios.post(endPoint, { pin, email }).then((result) => {
         if (result.data.status) {
           setDone(true)
         }
       })
     }
+  }
+
+  const home = () => {
+    navigate("/admin")
   }
 
   return (
@@ -66,16 +71,16 @@ const Success = () => {
         </div>
         <div className='d-flex align-content-center justify-content-center my-3'>
           <div className='fs-4'>Back to home page</div>
-          {done? <Link to="/admin" className='btn ms-2 btn-danger btn-sm'>Home Page</Link>:<button disabled className='btn ms-2 btn-danger btn-sm'>Home Page</button>}
+          {done? <button onClick={home} className='btn ms-2 btn-danger btn-sm'>Home Page</button>:<button disabled className='btn ms-2 btn-danger btn-sm'>Home Page</button>}
         </div>
       </section>
-      <div class="modal fade" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header d-flex justify-content-center">
-              <h3 class="modal-title" id="staticBackdropLiveLabel">Quiz link and pin</h3>
+      <div className="modal fade" id="staticBackdropLive" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLiveLabel" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header d-flex justify-content-center">
+              <h3 className="modal-title" id="staticBackdropLiveLabel">Quiz link and pin</h3>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className='d-flex justify-content-between'>
                 <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz link" value="http://localhost:3000/joinquiz" disabled/>
                 <button className='btn mx-1' type="button" data-bs-toggle="tooltip" data-bs-placement="right" onClick={copyLink} title={title1}>
@@ -88,8 +93,8 @@ const Success = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill={colorPin} d="M5 22q-.825 0-1.413-.587Q3 20.825 3 20V6h2v14h11v2Zm4-4q-.825 0-1.412-.587Q7 16.825 7 16V4q0-.825.588-1.413Q8.175 2 9 2h9q.825 0 1.413.587Q20 3.175 20 4v12q0 .825-.587 1.413Q18.825 18 18 18Z" /></svg></button>
               </div>
             </div>  
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

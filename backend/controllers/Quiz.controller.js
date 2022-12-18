@@ -42,4 +42,15 @@ const savePin = (req, res) => {
   })
 }
 
-module.exports = { addQuestion, deleteQuestion, saveQuiz, savePin}
+const getQuiz = (req, res) => {
+  const userPin = req.body.pin
+  quizModel.findOne({ pin: userPin }, (err, result) => {
+    if (result) {
+      res.status(200).send(result)
+    } else {
+      res.status(400).send({err:"Unable to fetch result"})
+    }
+  })
+}
+
+module.exports = { addQuestion, deleteQuestion, saveQuiz, savePin, getQuiz}
