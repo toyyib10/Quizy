@@ -31,9 +31,10 @@ const saveQuiz = (req, res) => {
 }
 
 const savePin = (req, res) => {
-  let eMail = req.body.email;
   let pin = req.body.pin;
-  quizModel.findOneAndUpdate({ email: eMail }, { pin }, (err, result) => {
+  let id = req.body.id;
+  console.log(pin)
+  quizModel.findOneAndUpdate({ _id: id }, {pin}, (err, result) => {
     if (result) {
       res.send({ status: true })
     } else {
@@ -43,8 +44,8 @@ const savePin = (req, res) => {
 }
 
 const getQuiz = (req, res) => {
-  const userPin = req.body.pin
-  quizModel.findOne({ pin: userPin }, (err, result) => {
+  const userPin = req.body.pin;
+  quizModel.findOne({ pin : userPin }, (err, result) => {
     if (result) {
       res.status(200).send(result)
     } else {

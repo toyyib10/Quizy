@@ -48,7 +48,7 @@ const Game = () => {
         let quiz = { ...values, allQuestion, email}
         axios.post(savePoint, quiz).then((result) => {
           if (result.data) {
-            console.log(result.data)
+            localStorage.id = result.data._id;
             localStorage.removeItem('questions')
             navigate("/admin/createquiz/successful")
           }

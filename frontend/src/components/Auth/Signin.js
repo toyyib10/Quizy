@@ -3,36 +3,48 @@ import { useNavigate } from "react-router-dom"
 import { useFormik } from "formik";
 import * as yup from "yup";
 import axios from "axios"
+import Spinner from '../../Starters/Spinner';
 
 const Signup = () => {
 	const navigate = useNavigate()
 	const [message, setmessage] = useState('')
+	const [done, setDone] = useState()
 	const endPoint = "http://localhost:5000/auth/login"
+
 	const createAccount = () => {
 		navigate("/auth/createaccount")
 	}
+
 	const formik = useFormik({
 		initialValues: {
 			email: "",
 			password: ""
 		},
 		onSubmit: (values) => {
+			setDone("true")
 			axios.post(endPoint, values).then((result) => {
 				if (result.data.status) {
+					setDone(false)
 					localStorage.token = result.data.token
 					navigate("/admin")
 				} else {
 					setmessage(result.data.message)
 				}
-			})
+			}).catch((err) => {
+        if (err) {
+          setDone(false)
+          setmessage("Unable to connect try again later")
+        }
+      })
 		},
 		validationSchema: yup.object({
 			email: yup.string().required("This field is required").email("Must be an email"),
 			password: yup.string().min(6, "Password must be at least 6 characters").max(15, "Password must be at most 15 characters").required("This field is required")
 		}),
 	})
+
 	return (
-		<div className="h-75 col-lg-7 col-md-9  col-11 bg-white shadow rounded-2" style={{minHeight: "80vh"}}>
+		<div className="col-lg-7 col-md-9  col-11 bg-white shadow rounded-2" style={{minHeight: "80vh"}}>
 			<div className="slide-controls d-flex border-bottom rounded-top-2">
 				<input type = "radio" name = "slide" id ="login" checked/>
 				<input type = "radio" name = "slide" id ="signup" />
@@ -78,6 +90,7 @@ const Signup = () => {
 					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="Facebook png"/> FaceBook</a>
 				</div>
 			</div>
+			<Spinner check={ done } />
 		</div>
 	)
 }

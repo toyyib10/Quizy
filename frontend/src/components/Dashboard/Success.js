@@ -8,24 +8,12 @@ const Success = () => {
   const [title2, settitle2] = useState("Copy pin")
   const [colorLink, setcolorLink] = useState("black")
   const [colorPin, setcolorPin] = useState("black")
-  const [pin, setPin] = useState("")
-  const [email, setEmail] = useState("")
+  const [id, setId] = useState("")
   const [done, setDone] = useState(false)
-
+  const [pinned, setPin] = useState(false)
+  
   useEffect(() => {
-    const endpoint = "http://localhost:5000/auth/dashboard"
-    let token = localStorage.token
-    axios.get(endpoint, {
-      headers: {
-        "authorization": `Bearer ${token}`,
-        "Content-type": "application/json",
-        "Accept": "application/json"
-      }
-    }).then((result) => {
-      if (result.data.status) {
-        setEmail(result.data.email)
-      }
-    })
+    setId(localStorage.id)
   }, [])
   const copyLink = () => {
     let link = "http://localhost:3000/joinquiz"
@@ -35,18 +23,20 @@ const Success = () => {
   }
 
   const copyPin = () => {
-    navigator.clipboard.writeText(pin)
+    navigator.clipboard.writeText(pinned)
     setcolorPin("Green")
     settitle2("Pin copied")
   }
 
   const generate = () => {
     if (!done) {
-      const endPoint = "http://localhost:5000/quiz/savePin"
-      setPin(String(Math.floor(1000 + Math.random() * 9000)))
-      axios.post(endPoint, { pin, email }).then((result) => {
+      const endPoint = "http://localhost:5000/quiz/savePin";
+      let pin = String(Math.floor(1000 + Math.random() * 9000))
+      setPin(pin)
+      axios.post(endPoint, {id,pin }).then((result) => {
         if (result.data.status) {
           setDone(true)
+          localStorage.removeItem("id")
         }
       })
     }
@@ -88,7 +78,7 @@ const Success = () => {
                 </button>
               </div>
               <div className='d-flex justify-content-between mt-4'>
-                <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz pin" value={ pin } disabled/>
+                <input className='col-10 me-2' type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Quiz pin" value={ pinned } disabled/>
                 <button className='btn mx-1' type="button" data-bs-toggle="tooltip" data-bs-placement="right" onClick={copyPin} title={title2}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 24 24"><path fill={colorPin} d="M5 22q-.825 0-1.413-.587Q3 20.825 3 20V6h2v14h11v2Zm4-4q-.825 0-1.412-.587Q7 16.825 7 16V4q0-.825.588-1.413Q8.175 2 9 2h9q.825 0 1.413.587Q20 3.175 20 4v12q0 .825-.587 1.413Q18.825 18 18 18Z" /></svg></button>
               </div>
