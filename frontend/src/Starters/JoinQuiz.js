@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Main from '../components/Quiz/Main'
 import Question from '../components/Quiz/Question'
 import Start from '../components/Quiz/Start'
+import Notfound from "./Notfound"
 import "../cssfiles/joinquiz.css"
 
 const JoinQuiz = () => {
@@ -11,7 +12,8 @@ const JoinQuiz = () => {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/start' element={<Start />} />
-        <Route path='/start/question' element={<Question/>}/>
+        <Route path='/start/question' element={<Question />} />
+        <Route path="/*" element={<Notfound/> } />
       </Routes>
     </>
   )

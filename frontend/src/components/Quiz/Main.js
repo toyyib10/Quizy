@@ -15,8 +15,9 @@ const Main = () => {
       setPin(value)
       axios.post(endPoint, { pin }).then((result) => {
         if (result) {
-          console.log(result)
+          localStorage.quizy = result.data;
           setDone(false)
+          navigate("/joinquiz/start")
         }
       }).catch((err) => {
         if (err) {
