@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Question = () => {
+  const [first, setfirst] = useState(0)
+  
   return (
     <>
       <section className="section d-flex flex-column align-items-center justify-content-center">
@@ -10,7 +12,7 @@ const Question = () => {
           </div>
           <div className='col-5 d-flex justify-content-end pe-4'>
             <div className='col-lg-3 col-md-4 col-8 h-75 shadow bg-white d-flex align-items-center justify-content-center rounded-2'>
-              <h1 style={{"font-weight":"bold"}}>20</h1>
+              <h1 style={{ "font-weight": "bold" }}>{ first }</h1>
             </div>
           </div>
         </section>

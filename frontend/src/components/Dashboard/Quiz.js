@@ -85,7 +85,7 @@ const Game = () => {
         setcorrect("")
       })
     } else {
-      alert("hhh")
+      
     }
   } 
   const deleteQuestion = (quizQuestion, index) => {
