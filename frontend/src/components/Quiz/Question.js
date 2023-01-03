@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Question = () => {
-  const [first, setfirst] = useState(0)
+  const [time, setTime] = useState(10)
+  const [check, setCheck] = useState(false)
+  const [change, setChange] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => { setTime(time - 1) }, 1000)
+    if (time<6) {
+      setCheck(true)
+    } 
+    if (time < 0) {
+      setChange(false)
+      setCheck(false)
+      clearTimeout(timer)
+    } 
+  }, [time])
   
+
   return (
     <>
       <section className="section d-flex flex-column align-items-center justify-content-center">
@@ -11,8 +26,8 @@ const Question = () => {
             <h1 className='text-white' style={{"font-size":"4em"}}>Quizy</h1>
           </div>
           <div className='col-5 d-flex justify-content-end pe-4'>
-            <div className='col-lg-3 col-md-4 col-8 h-75 shadow bg-white d-flex align-items-center justify-content-center rounded-2'>
-              <h1 style={{ "font-weight": "bold" }}>{ first }</h1>
+            <div className={check?'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2 border border-3 border-danger':'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2'}>
+              { change?<h1 style={{ "font-weight": "bold" }}>{time}</h1>:<button className='btn w-100 h-100 fs-4' style={{ "font-weight": "bold" }}>Next</button> }
             </div>
           </div>
         </section>
@@ -40,7 +55,6 @@ const Question = () => {
             </button>
           </div>
         </section>
-        
       </section> 
     </>
   )
