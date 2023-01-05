@@ -1,21 +1,55 @@
 import React, { useEffect, useState } from 'react'
 
 const Question = () => {
-  const [time, setTime] = useState(10)
+  const [time, setTime] = useState(Number(JSON.parse(localStorage.quizy).quizTime))
   const [check, setCheck] = useState(false)
   const [change, setChange] = useState(true)
-
+  const [quiz, setQuiz] = useState(JSON.parse(localStorage.quizy).allQuestion)
+  const [question, setQuestion] = useState("")
+  const [number, setNumber] = useState(0)
+  const [a, setA] = useState("")
+  const [b, setB] = useState("")
+  const [c, setC] = useState("")
+  const [d, setD] = useState("")
+  let timer;
+  
   const answer = (answer) => {
     setChange(false)
     setCheck(false)
+    clearTimeout(timer)
     document.getElementById("danger").disabled = true;
-    document.getElementById("info").disabled = true;
-    document.getElementById("warning").disabled = true;
     document.getElementById("success").disabled = true;
+    if (c) {
+      document.getElementById("warning").disabled = true;
+    }
+    if (d) {
+      document.getElementById("info").disabled = true;
+    }
+  }
+
+  const next = () => {
+    setTime(JSON.parse(localStorage.quizy).quizTime)
+    setCheck(false)
+    setChange(true)
+    setQuestion(quiz[number].question)
+    setA(quiz[number].firstanswer)
+    setB(quiz[number].secondanswer)
+    setC(quiz[number].thirdanswer)
+    setD(quiz[number].forthanswer)
+    setNumber(number + 1)
+    
+    document.getElementById("danger").disabled = false;
+    document.getElementById("success").disabled = false;
+    if (c) {
+      document.getElementById("warning").disabled = false;
+    }
+    if (d) {
+      document.getElementById("info").disabled = false;
+    }
   }
 
   useEffect(() => {
-    const timer = setTimeout(() => { setTime(time - 1) }, 900)
+    timer = setTimeout(() => { setTime(time - 1) }, 900)
     if (time<6) {
       setCheck(true)
     } 
@@ -23,18 +57,27 @@ const Question = () => {
       setChange(false)
       setCheck(false)
       document.getElementById("danger").disabled = true;
-      document.getElementById("info").disabled = true;
-      document.getElementById("warning").disabled = true;
       document.getElementById("success").disabled = true;
+      if (c) {
+        document.getElementById("warning").disabled = true;
+      }
+      if (d) {
+        document.getElementById("info").disabled = true;
+      }
       clearTimeout(timer)
     } 
   }, [time])
 
   useEffect(() => {
-    
+    setQuestion(quiz[number].question)
+    setA(quiz[number].firstanswer)
+    setB(quiz[number].secondanswer)
+    setC(quiz[number].thirdanswer)
+    setD(quiz[number].forthanswer)
+    setNumber(number+1)
   }, [])
   
-  
+
   return (
     <>
       <section className="section d-flex flex-column align-items-center justify-content-center">
@@ -44,31 +87,30 @@ const Question = () => {
           </div>
           <div className='col-5 d-flex justify-content-end pe-4'>
             <div className={check?'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2 border border-3 border-danger':'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2'}>
-              { change?<h1 style={{ "font-weight": "bold" }}>{time}</h1>:<button className='btn w-100 h-100 fs-4' style={{ "font-weight": "bold" }}>Next</button> }
+              { change?<h1 style={{ "font-weight": "bold" }}>{time}</h1>:<button className='btn w-100 h-100 fs-4' style={{ "font-weight": "bold" }} onClick={next}>Next</button> }
             </div>
           </div>
         </section>
         <section className='col-12 col-md-10 col-lg-12 d-flex flex-column align-items-center'>
           <div className='bg-white p-2 ps-3 col-9 col-md-8 mb-5 rounded-2 overflow-auto' style={{ "height": "5.6em" }}>
-            <h3 className='overflow-auto'>
-              How old are you?
-            </h3>
+            <h3 className='overflow-auto'>{ question }</h3>
           </div>
           <div className='col-12 d-flex px-3 px-md-4 px-md-4 mb-3 justify-content-between'>
             <button onClick={() => answer("A")} className='btn btn-danger shadow btn-lg w-50 me-2' id='danger' style={{ "height": "5em" }}>
-              <h2>Elon Musk</h2>
+              <h2>{ a }</h2>
             </button>
             <button onClick={() => answer("B")} className='btn btn-success btn-lg shadow ms-2 w-50 overflow-auto' id='success' style={{ "height": "5em" }}>
-              <h2>Bill Gate</h2>
+              <h2>{ b }</h2>
             </button>
           </div>
           <div className='col-12 d-flex px-3 px-md-4 px-md-4 mb-3 justify-content-between'>
-            <button onClick={() => answer("C")} className='btn text-white btn-warning shadow btn-lg w-50 me-2 overflow-auto' id='warning' style={{ "height": "5em" }}>
-              <h2>Jeff Bezos</h2>
-            </button>
-            <button onClick={() => answer("D")} className='btn btn-info text-white btn-lg shadow ms-2 w-50 overflow-auto' id='info' style={{ "height": "5em" }}>
-              <h2>Yekeen Toyyib</h2>
-            </button>
+            {c? <button onClick={() => answer("C")} className='btn text-white btn-warning shadow btn-lg w-50 me-2 overflow-auto' id='warning' style={{ "height": "5em" }}>
+              <h2>{ c }</h2>
+            </button>:<b></b>}
+            {d? <button onClick={() => answer("D")} className='btn btn-info text-white btn-lg shadow ms-2 w-50 overflow-auto' id='info' style={{ "height": "5em" }}>
+              <h2>{ d }</h2>
+            </button>:<b></b>}
+            
           </div>
         </section>
       </section> 

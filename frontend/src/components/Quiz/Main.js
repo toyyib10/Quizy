@@ -15,7 +15,7 @@ const Main = () => {
       setPin(value)
       axios.post(endPoint, { pin }).then((result) => {
         if (result) {
-          localStorage.quizy = result.data;
+          localStorage.quizy = JSON.stringify(result.data);
           setDone(false)
           navigate("/joinquiz/start")
         }

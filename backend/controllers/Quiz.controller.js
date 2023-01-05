@@ -48,6 +48,7 @@ const getQuiz = (req, res) => {
   quizModel.findOne({ pin : userPin }, (err, result) => {
     if (result) {
       res.status(200).send(result)
+      console.log(result)
     } else {
       res.status(400).send({err:"Unable to fetch result"})
     }
