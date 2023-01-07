@@ -129,159 +129,78 @@ const Game = () => {
   }
   return (
     <>
-      <header className="navbar sticky-top bg-white navbar-white px-md-0 px-lg-0 px-3 shadow d-flex ">
+      <header className="navbar sticky-top bg-white navbar-white px-md-0 px-lg-0 px-4 shadow d-flex ">
         <h2 className="navbar-bran m-0 p-0 col-md-3 col-lg-2 ps-md-4 ps-lg-4" style={{ fontSize: "2.9em" }}>Quizy</h2>
         <div>
-          <button className="navbar-toggler me-4 bg-light" type="button">
-            <svg className="mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1.1em" height="1.5em"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
-          </button>
           <Link to="/admin" className="navbar-toggler btn me-4 bg-light">
-            <svg className="mx-1" viewBox="0 0 16 16" width="1.1em" height="1.5em"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
+            <svg width="1.3em" height="1.3em" viewBox="0 0 24 24"><path fill="currentColor" d="m10.875 19.3l-6.6-6.6q-.15-.15-.213-.325Q4 12.2 4 12t.062-.375q.063-.175.213-.325l6.6-6.6q.275-.275.687-.288q.413-.012.713.288q.3.275.313.687q.012.413-.288.713L7.4 11h11.175q.425 0 .713.287q.287.288.287.713t-.287.712Q19 13 18.575 13H7.4l4.9 4.9q.275.275.288.7q.012.425-.288.7q-.275.3-.7.3q-.425 0-.725-.3Z"/></svg>
           </Link>
-          <button className="navbar-toggler d-md-none collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
         </div>
-      </header>
-
-      <div className="container-fluid">
-        <div className="row">
-          <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block sidebar collapse bg-white">
-            <div className="position-sticky pt-3">
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted px-md-4 px-lg-4 ps-4">
-                <span>Dashboard</span>
-                <a className="link-secondary" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle"></span>
-                </a>
-              </h6>
-              <ul className="nav flex-column px-md-4 px-lg-4 ps-4">
-                <li className="nav-item">
-                  <Link to="/admin/" className="nav-link active fs-4">
-                    <span data-feather="home"></span>
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file"></span>
-                    Results
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Articles
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="users"></span>
-                    Partners
-                  </a>
-                </li>
-              </ul>
-
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted px-md-4 px-lg-4 ps-4">
-                <span>Preferences</span>
-                <a className="link-secondary" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle"></span>
-                </a>
-              </h6>
-              <ul className="nav flex-column mb-2  px-md-4 px-lg-4 ps-4">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Profile
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Notification
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Theme
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-
-                  </a>
-                </li>
-              </ul>
+      </header> 
+      <div className="col-12 px-4 pt-4">
+        <div className="w-100 d-flex justify-content-center mt-2">
+          <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
+            <h2>Question</h2>
+            <input onChange={(e)=>setquestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={question} name="question" type="text" required />
+          </div>
+        </div>
+        <form action="">
+          <div className="w-100 mt-4 d-flex justify-content-between px-1 px-md-4 px-lg-4">
+            <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-danger shadow d-flex">
+              <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">A. </p>
+              <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4" placeholder="Required" onChange={(e) => setfirstanswer(e.target.value)} value={firstanswer} name="firstanswer" type="text" required />
+              <input onClick={(e) => setcorrect(e.target.value)} className="h-75 ms-1" value="A" name="correct" type="radio" />
             </div>
-          </nav>
-
-          <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <div className="w-100 d-flex justify-content-center mt-2">
-              <div className="col-11 col-lg-8 col-md-9 bg-white rounded-2 shadow p-4 d-flex flex-column">
-                <h2>Question</h2>
-                <input onChange={(e)=>setquestion(e.target.value)} className="form-control form-control-lg mt-2" placeholder="Start typing question" value={question} name="question" type="text" required />
-              </div>
+            <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-success shadow d-flex">
+              <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">B. </p>
+              <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4 " placeholder="Required" onChange={(e) => setsecondanswer(e.target.value)} value={secondanswer} type="text" name="secondanswer" required />
+              <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="B" name="correct" type="radio" />
             </div>
-            <form action="">
-              <div className="w-100 mt-4 d-flex justify-content-between px-1 px-md-4 px-lg-4">
-                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-danger shadow d-flex">
-                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">A. </p>
-                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4" placeholder="Required" onChange={(e) => setfirstanswer(e.target.value)} value={firstanswer} name="firstanswer" type="text" required />
-                  <input onClick={(e) => setcorrect(e.target.value)} className="h-75 ms-1" value="A" name="correct" type="radio" />
-                </div>
-                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-success shadow d-flex">
-                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">B. </p>
-                  <input className="form-control form-control-lg ms-2 ms-lg-4 ms-md-4 " placeholder="Required" onChange={(e) => setsecondanswer(e.target.value)} value={secondanswer} type="text" name="secondanswer" required />
-                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="B" name="correct" type="radio" />
-                </div>
-              </div>
-              <div className="w-100 mt-4 d-flex justify-content-between px-2 px-md-4 px-lg-4">
-                <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-warning shadow d-flex">
-                  <p className="m-0 fs-1 text-center p-lg-0 pt- p-md-0 ">
-                    C. </p>
-                  <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setthirdanswer(e.target.value)} value={thirdanswer} name="thirdanswer" type="text" />
-                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="C" name="correct" type="radio" />
-                </div>
-                <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-info shadow d-flex">
-                  <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">D. </p>
-                  <input placeholder="Optional" value={forthanswer} name="forthanswer" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setforthanswer(e.target.value)} type="text" />
-                  <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="D" name="correct" type="radio" />
-                </div>
-              </div>
-            </form>
-            
-            <div className="col-12 shadow px-3 bg-white mt-4 d-flex justify-content-between align-items-center flex-wrap rounded-2">
-              <div className="col-md-6 my-1 col-12 bg-light p-1 d-flex" style={{ height: "55px" , overflowY: "auto"}}>
-                {
-                  allQuestion.map((item,index) =>
-                    <button onClick={() => goTo(index)} className='btn btn-primary rounded-1 h-100 text-white mx-1' style={{ width: "50px" }}>{ index + 1 }</button>
-                  )
-                }
-              </div>
-              <div className="d-flex justify-content-end col-md-6 col-12 my-2">
-                <div>
-                  <button onClick={addQuestion} className="btn btn-success h-100 mx-3"> Add</button>
-                </div>
-                <div>
-                  <button onClick={() => deleteQuestion()} className="btn btn-danger h-100 mx-3">Delete</button>
-                </div>
-                <div>
-                  <button type="button" onClick={preSave} className="btn btn-primary mx-3 h-100" data-bs-toggle="modal" data-bs-target="#saveQuestion"> Save</button>
-                </div>
-              </div>
+          </div>
+          <div className="w-100 mt-4 d-flex justify-content-between px-2 px-md-4 px-lg-4">
+            <div className="w-50 me-2 me-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-warning shadow d-flex">
+              <p className="m-0 fs-1 text-center p-lg-0 pt- p-md-0 ">
+                C. </p>
+              <input placeholder="Optional" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setthirdanswer(e.target.value)} value={thirdanswer} name="thirdanswer" type="text" />
+              <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="C" name="correct" type="radio" />
             </div>
-          </main>
+            <div className="w-50 ms-2 ms-md-3 p-md-3 p-lg-3 p-2 mt-3 text-white rounded-2 bg-info shadow d-flex">
+              <p className="m-0 fs-1 text-centerp-lg-0 pt-3 p-md-0 ">D. </p>
+              <input placeholder="Optional" value={forthanswer} name="forthanswer" className="form-control form-control-lg ms-2 ms-md-4 ms-lg-4" onChange={(e) => setforthanswer(e.target.value)} type="text" />
+              <input className="h-75 ms-1" onClick={(e) => setcorrect(e.target.value)} value="D" name="correct" type="radio" />
+            </div>
+          </div>
+        </form>
+        
+        <div className="col-12 shadow px-3 bg-white mt-4 d-flex justify-content-between align-items-center flex-wrap rounded-2">
+          <div className="col-md-6 my-1 col-12 bg-light p-1 d-flex" style={{ height: "55px" , overflowY: "auto"}}>
+            {
+              allQuestion.map((item,index) =>
+                <button onClick={() => goTo(index)} className='btn btn-primary rounded-1 h-100 text-white mx-1' style={{ width: "50px" }}>{ index + 1 }</button>
+              )
+            }
+          </div>
+          <div className="d-flex justify-content-end col-md-6 col-12 my-2">
+            <div>
+              <button onClick={addQuestion} className="btn btn-success h-100 mx-3"> Add</button>
+            </div>
+            <div>
+              <button onClick={() => deleteQuestion()} className="btn btn-danger h-100 mx-3">Delete</button>
+            </div>
+            <div>
+              <button type="button" onClick={preSave} className="btn btn-primary mx-3 h-100" data-bs-toggle="modal" data-bs-target="#saveQuestion"> Save</button>
+            </div>
+          </div>
         </div>
       </div>
-    <div className="modal fade" id="saveQuestion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="saveQuestionLabel" aria-hidden="true">
+      <div className="modal fade" id="saveQuestion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="saveQuestionLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="staticBackdropLiveLabel">Extra Information</h5>
               <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-             <form action="" onSubmit={formik.handleSubmit}>
+            <form action="" onSubmit={formik.handleSubmit}>
               <div className="modal-body">
                 {modal ?
                   <>

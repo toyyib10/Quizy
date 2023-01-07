@@ -11,109 +11,34 @@ const Main = () => {
   
   return (
     <>
-      <header className="navbar sticky-top bg-white navbar-white px-md-0 px-lg-0 px-3 shadow d-flex ">
-        <h2 className="navbar-bran m-0 p-0 col-md-3 col-lg-2 ps-md-4 ps-lg-4" style={{ fontSize: "2.9em" }}>Quizy</h2>
+      <header className="navbar sticky-top bg-white navbar-white px-4 shadow d-flex ">
+        <h2 className="navbar-brand m-0 p-0 col-md-3 col-lg-2" style={{ fontSize: "2.9em" }}>Quizy</h2>
         <div>
-          <button className="navbar-toggler me-4 bg-light" type="button">
-            <svg className="mx-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="1.1em" height="1.5em"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg>
+          <button to="/admin" className="navbar-toggler btn me-4 bg-light">
+            <svg width="1.3em" height="1.3em" viewBox="0 0 24 24"><path fill="currentColor" d="m10.875 19.3l-6.6-6.6q-.15-.15-.213-.325Q4 12.2 4 12t.062-.375q.063-.175.213-.325l6.6-6.6q.275-.275.687-.288q.413-.012.713.288q.3.275.313.687q.012.413-.288.713L7.4 11h11.175q.425 0 .713.287q.287.288.287.713t-.287.712Q19 13 18.575 13H7.4l4.9 4.9q.275.275.288.7q.012.425-.288.7q-.275.3-.7.3q-.425 0-.725-.3Z"/></svg>
           </button>
-          <button className="navbar-toggler d-md-none collapsed bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <Link to="/admin" className="navbar-toggler btn me-4 bg-light">
+            <svg width="1.3em" height="1.3em" viewBox="0 0 24 24"><path fill="currentColor" d="m10.875 19.3l-6.6-6.6q-.15-.15-.213-.325Q4 12.2 4 12t.062-.375q.063-.175.213-.325l6.6-6.6q.275-.275.687-.288q.413-.012.713.288q.3.275.313.687q.012.413-.288.713L7.4 11h11.175q.425 0 .713.287q.287.288.287.713t-.287.712Q19 13 18.575 13H7.4l4.9 4.9q.275.275.288.7q.012.425-.288.7q-.275.3-.7.3q-.425 0-.725-.3Z"/></svg>
+          </Link>
         </div>
       </header>
-          
-      <div className="container-fluid">
-        <div className="row">
-          <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block sidebar collapse bg-white">
-            <div className="position-sticky pt-3">
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-2 mb-1 text-muted px-md-4 px-lg-4 ps-4">
-                <span>Dashboard</span>
-                <a className="link-secondary" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle"></span>
-                </a>
-              </h6>
-              <ul className="nav flex-column px-md-3 px-lg-3 ps-4">
-                <li className="nav-item">
-                  <a className="nav-link active fs-4" aria-current="page" href="#">
-                    <span data-feather="home"></span>
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file"></span>
-                    Results
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="shopping-cart"></span>
-                    Articles
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="users"></span>
-                    Partners
-                  </a>
-                </li>
-              </ul>
-
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted px-md-4 px-lg-4 ps-4">
-                <span>Preferences</span>
-                <a className="link-secondary" href="#" aria-label="Add a new report">
-                  <span data-feather="plus-circle"></span>
-                </a>
-              </h6>
-              <ul className="nav flex-column mb-2  px-md-4 px-lg-4 ps-4">
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Profile
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Notification
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    Theme
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    <span data-feather="file-text"></span>
-                    
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
-            <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-             <button className="btn btn-main w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
-                Play Demo
-              </button>
-            </div>
-            <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
-              <Link to="/admin/createquiz" className="btn btn-main w-100 rounded-1 bg-warning text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
-                Create Quiz  
-              </Link>
-            </div>
-            <div data-aos="fade-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2" >
-              <Link to="/joinquiz
-              " className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{ fontSize: "2.5em" }}>
-                Join Quiz
-              </Link>
-            </div>   
-          </main>
+      <div className=" col-12 px-4 pt-4">
+        <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+          <button className="btn btn-main w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+            Play Demo
+          </button>
         </div>
+        <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
+          <Link to="/admin/createquiz" className="btn btn-main w-100 rounded-1 bg-warning text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
+            Create Quiz  
+          </Link>
+        </div>
+        <div data-aos="fade-right" className=" rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2" >
+          <Link to="/joinquiz
+          " className="btn btn-main w-100 rounded-1 bg-info text-white d-flex justify-content-between align-items-center" style={{ fontSize: "2.5em" }}>
+            Join Quiz
+          </Link>
+        </div>   
       </div>
     </>
   )
