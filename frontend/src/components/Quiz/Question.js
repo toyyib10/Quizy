@@ -11,6 +11,7 @@ const Question = () => {
   const [b, setB] = useState("")
   const [c, setC] = useState("")
   const [d, setD] = useState("")
+  const [action, setAction] = useState(true)
   let timer;
   
   const answer = (answer) => {
@@ -46,6 +47,13 @@ const Question = () => {
     if (d) {
       document.getElementById("info").disabled = false;
     }
+    if (number === question.length) {
+      setAction(false)
+    }
+  }
+
+  const finish = () => {
+    alert("dey play")
   }
 
   useEffect(() => {
@@ -87,7 +95,7 @@ const Question = () => {
           </div>
           <div className='col-5 d-flex justify-content-end pe-4'>
             <div className={check?'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2 border border-3 border-danger':'col-lg-3 col-md-4 col-8 h-75 shadow-lg bg-white d-flex align-items-center justify-content-center rounded-2'}>
-              { change?<h1 style={{ "font-weight": "bold" }}>{time}</h1>:<button className='btn w-100 h-100 fs-4' style={{ "font-weight": "bold" }} onClick={next}>Next</button> }
+              {change ? <h1 style={{ "font-weight": "bold" }}>{time}</h1> : <button className='btn w-100 h-100 fs-4' style={{ "font-weight": "bold" }} onClick={action?next:finish}>{ action? "Next": "Finish"}</button> }
             </div>
           </div>
         </section>
@@ -118,4 +126,4 @@ const Question = () => {
   )
 }
 
-export default Question
+export default Question;
