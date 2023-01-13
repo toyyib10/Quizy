@@ -12,6 +12,7 @@ const Question = () => {
   const [c, setC] = useState("")
   const [d, setD] = useState("")
   const [action, setAction] = useState(true)
+  const [correct, setCorrect] = useState("")
   let timer;
   
   const answer = (answer) => {
@@ -26,6 +27,11 @@ const Question = () => {
     if (d) {
       document.getElementById("info").disabled = true;
     }
+    if (answer === correct) {
+      alert("worked")
+    } else {
+      alert("e no work")
+    }
   }
 
   const next = () => {
@@ -37,6 +43,7 @@ const Question = () => {
     setB(quiz[number].secondanswer)
     setC(quiz[number].thirdanswer)
     setD(quiz[number].forthanswer)
+    setCorrect(quiz[number].correct)
     setNumber(number + 1)
     
     document.getElementById("danger").disabled = false;
@@ -82,6 +89,7 @@ const Question = () => {
     setB(quiz[number].secondanswer)
     setC(quiz[number].thirdanswer)
     setD(quiz[number].forthanswer)
+    setCorrect(quiz[number].correct)
     setNumber(number+1)
   }, [])
   
