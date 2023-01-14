@@ -7,8 +7,9 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/bootstrap/dist/js/bootstrap"
 import "../src/cssfiles/notfound.css"
 import JoinQuiz from './Starters/JoinQuiz';
-import LandingPage from "./Starters/LandingPage"
-import Questions from "./Starters/Questions"
+import LandingPage from "./Starters/LandingPage";
+import Start from './Starters/Start';
+import Demo from './Starters/Demo';
 
 const App = () => {
   
@@ -21,7 +22,8 @@ const App = () => {
         <Route path="/auth/*" element={<Auth />} />
         <Route path="/admin/*" element={<Dashboard />} /> 
         <Route path="/joinquiz/*" element={<JoinQuiz />} />
-        <Route path="/questions" element={<Questions/>} />
+        <Route path="/start" element={<Start />} />
+        <Route path="/start/demo" element={<Demo />} />
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>

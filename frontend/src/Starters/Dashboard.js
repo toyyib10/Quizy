@@ -7,12 +7,6 @@ import Success from "../components/Dashboard/Success";
 import Notfound from "./Notfound"
 
 const Dashboard = () => {
-  const toggleMenu = () => {
-    let navigation = document.querySelector('.navigation');
-    let toggle = document.querySelector('.toggle');
-    navigation.classList.toggle('active')
-    toggle.classList.toggle('active')
-  }
   const navigate = useNavigate()
   useEffect(() => {
     const endpoint = "http://localhost:5000/auth/dashboard"
