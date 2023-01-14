@@ -27,10 +27,10 @@ const Question = () => {
     if (d) {
       document.getElementById("info").disabled = true;
     }
-    if (answer === correct) {
-      alert("worked")
+    if (localStorage.finishedQuestion) {
+      localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{number:number-1, answer, correct} ]);
     } else {
-      alert("e no work")
+      localStorage.finishedQuestion = JSON.stringify([{number:number-1, answer, correct} ]);
     }
   }
 
@@ -78,6 +78,11 @@ const Question = () => {
       }
       if (d) {
         document.getElementById("info").disabled = true;
+      }
+      if (localStorage.finishedQuestion) {
+        localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{number:number-1,answer:"", correct} ]);
+      } else {
+        localStorage.finishedQuestion = JSON.stringify([{number:number-1,answer:"", correct} ]);
       }
       clearTimeout(timer)
     } 

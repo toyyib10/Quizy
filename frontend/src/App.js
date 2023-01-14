@@ -5,6 +5,7 @@ import Dashboard from "../src/Starters/Dashboard";
 import Notfound from "../src/Starters/Notfound"
 import "../node_modules/bootstrap/dist/css/bootstrap.css"
 import "../node_modules/bootstrap/dist/js/bootstrap"
+import "../src/cssfiles/notfound.css"
 import JoinQuiz from './Starters/JoinQuiz';
 import LandingPage from "./Starters/LandingPage"
 import Questions from "./Starters/Questions"

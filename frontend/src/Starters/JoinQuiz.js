@@ -5,6 +5,7 @@ import Question from '../components/Quiz/Question'
 import Start from '../components/Quiz/Start'
 import Notfound from "./Notfound"
 import "../cssfiles/joinquiz.css"
+import Finish from '../components/Quiz/Finish'
 
 const JoinQuiz = () => {
   return (
@@ -13,7 +14,8 @@ const JoinQuiz = () => {
         <Route path='/' element={<Main />} />
         <Route path='/start' element={<Start />} />
         <Route path='/start/question' element={<Question />} />
-        <Route path="/*" element={<Notfound/> } />
+        <Route path='/start/question/done' element={<Finish />} />
+        <Route path="/*" element={<Notfound />} />
       </Routes>
     </>
   )

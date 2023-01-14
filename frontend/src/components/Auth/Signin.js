@@ -84,11 +84,6 @@ const Signup = () => {
 						<button type="submit" className="btn btn-lg btn-light text-white w-75 hover">Login</button>
 					</div>
 				</form>
-				<h5 className="text-center m-0 mt-4">Or Login With</h5>
-				<div className="w-100 d-flex px-4 justify-content-around align-content-end flex-wrap mt-lg-4 mt-4">
-					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/google.png" className="me-2" style={{height:"25px"}} alt="Google png"/> Google</a>
-					<a href='/' className="btn btn-lg mt-2 mb-3 d-flex justify-content-between align-content-center bg-light"> <img src="/images/facebook.png" className="me-2" style={{height:"30px"}} alt="Facebook png"/> FaceBook</a>
-				</div>
 			</div>
 			<Spinner check={ done } />
 		</div>
