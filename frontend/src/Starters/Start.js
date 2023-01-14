@@ -19,7 +19,7 @@ const Start = () => {
   useEffect(() => {
     setTime(10);
     setTitle("Demo");
-    setNumb(10)
+    setNumb(5)
   }, [])
   
 

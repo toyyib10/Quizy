@@ -54,7 +54,7 @@ const Question = () => {
     if (d) {
       document.getElementById("info").disabled = false;
     }
-    if (number === question.length) {
+    if (number+1 === quiz.length) {
       setAction(false)
     }
   }
