@@ -34,7 +34,7 @@ const LandingPage = () => {
             <br /> click the link below to check demo
           </div>
           <div className='d-flex align-items-center justify-content-center h-25 mt-2'>
-            <Link to="/" className='btn text-white' style={{ "background": "-webkit-linear-gradient(right, #a445b2, #fa4299)" }}>Check Demo</Link>
+            <Link to="/start" className='btn text-white' style={{ "background": "-webkit-linear-gradient(right, #a445b2, #fa4299)" }}>Check Demo</Link>
           </div>
         </div>
       </section>

@@ -10,6 +10,7 @@ import JoinQuiz from './Starters/JoinQuiz';
 import LandingPage from "./Starters/LandingPage";
 import Start from './Starters/Start';
 import Demo from './Starters/Demo';
+import Finish from './Starters/Finish';
 
 const App = () => {
   
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/joinquiz/*" element={<JoinQuiz />} />
         <Route path="/start" element={<Start />} />
         <Route path="/start/demo" element={<Demo />} />
+        <Route path="/start/demo/done" element={<Finish />} />
         <Route path="/*" element={<Notfound />} />
       </Routes>
     </>

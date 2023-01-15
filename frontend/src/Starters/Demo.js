@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from "react-router-dom"
 
 const Demo = () => {
   const [time, setTime] = useState(10)
@@ -48,6 +49,7 @@ const Demo = () => {
   const [d, setD] = useState("")
   const [action, setAction] = useState(true)
   const [correct, setCorrect] = useState("")
+  const navigate = useNavigate()
   let timer;
   
   const answer = (answer) => {
@@ -96,7 +98,7 @@ const Demo = () => {
   }
 
   const finish = () => {
-    alert("dey play")
+    navigate("/start/demo/done")
   }
 
   useEffect(() => {
@@ -125,6 +127,9 @@ const Demo = () => {
   }, [time])
 
   useEffect(() => {
+    if (localStorage.finishedQuestion) {
+      localStorage.removeItem("finishedQuestion")
+    }
     setQuestion(quiz[number].question)
     setA(quiz[number].firstanswer)
     setB(quiz[number].secondanswer)
