@@ -5,6 +5,7 @@ const Finish = () => {
   const navigate = useNavigate()
   const [mark, setMark] = useState(0)
   const [numb, setNumb] = useState(0)
+  let num = 0
   const [title, setTitle] = useState('')
   const [questions, setQuestions] = useState(JSON.parse(localStorage.quizy).allQuestion)
   const [result, setResult] = useState(JSON.parse(localStorage.finishedQuestion))
@@ -25,7 +26,7 @@ const Finish = () => {
   }, [])
   
   const leave = () => {
-    // localStorage.removeItem("quizy")
+    localStorage.removeItem("quizy")
     localStorage.removeItem("finishedQuestion")
     navigate("/joinquiz")
   }
@@ -45,7 +46,7 @@ const Finish = () => {
           </div>
         </div>
       </section>
-      <div className="modal fade" id="exampleModalFullscreen" tabindex="-1" aria-labelledby="exampleModalFullscreenLabel" aria-hidden="true">
+      <div className="modal fade" id="exampleModalFullscreen" tabIndex="-1" aria-labelledby="exampleModalFullscreenLabel" aria-hidden="true">
         <div className="modal-dialog modal-fullscreen">
           <div className="modal-content">
             <div className="modal-header">
@@ -69,7 +70,7 @@ const Finish = () => {
                         Answer
                       </div>
                       <div className="col-md-9 col-8 bg-light p-1 text-center text-nowrap fs-5" style={{ height: "35px" , overflowY: "hidden", overflowX:"auto"}}>
-                        {}
+                        {result[num++].option}
                       </div>
                     </div>
                   </div>

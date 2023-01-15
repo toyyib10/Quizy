@@ -15,6 +15,7 @@ const Question = () => {
   const [action, setAction] = useState(true)
   const navigate = useNavigate()
   const [correct, setCorrect] = useState("")
+  let option;
   let timer;
   
   const answer = (answer) => {
@@ -29,10 +30,19 @@ const Question = () => {
     if (d) {
       document.getElementById("info").disabled = true;
     }
-    if (localStorage.finishedQuestion) {
-      localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{number:number-1, answer, correct} ]);
+    if (correct === "A") {
+      option = a
+    } else if (correct === "B") {
+      option = b
+    } else if (correct === "C") {
+      option = c
     } else {
-      localStorage.finishedQuestion = JSON.stringify([{number:number-1, answer, correct} ]);
+      option = d
+    }
+    if (localStorage.finishedQuestion) {
+      localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{option, answer, correct} ]);
+    } else {
+      localStorage.finishedQuestion = JSON.stringify([{option, answer, correct} ]);
     }
   }
 
@@ -81,10 +91,19 @@ const Question = () => {
       if (d) {
         document.getElementById("info").disabled = true;
       }
-      if (localStorage.finishedQuestion) {
-        localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{number:number-1,answer:"", correct} ]);
+      if (correct === "A") {
+        option = a
+      } else if (correct === "B") {
+        option = b
+      } else if (correct === "C") {
+        option = c
       } else {
-        localStorage.finishedQuestion = JSON.stringify([{number:number-1,answer:"", correct} ]);
+        option = d
+      }
+      if (localStorage.finishedQuestion) {
+        localStorage.finishedQuestion = JSON.stringify([...JSON.parse(localStorage.finishedQuestion),{option,answer:"", correct} ]);
+      } else {
+        localStorage.finishedQuestion = JSON.stringify([{option,answer:"", correct} ]);
       }
       clearTimeout(timer)
     } 
