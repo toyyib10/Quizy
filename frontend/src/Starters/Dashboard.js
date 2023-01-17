@@ -9,7 +9,7 @@ import Notfound from "./Notfound"
 const Dashboard = () => {
   const navigate = useNavigate()
   useEffect(() => {
-    const endpoint = "http://localhost:5000/auth/dashboard"
+    const endpoint = "https://quizy-api.vercel.app/auth/dashboard"
     let token = localStorage.token
     axios.get(endpoint, {
       headers: {

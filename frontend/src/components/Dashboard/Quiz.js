@@ -15,10 +15,10 @@ const Game = () => {
   const [allQuestion, setallQuestion] = useState([])
   const [ind, setindex] = useState("")
   const [modal, setmodal] = useState()
-  const endPoint = "http://localhost:5000/quiz/addQuestion"
-  const deletePoint = "http://localhost:5000/quiz/deleteQuestion"
-  const savePoint = "http://localhost:5000/quiz/saveQuiz"
-  const checkPoint = "http://localhost:5000/auth/dashboard"
+  const endPoint = "https://quizy-api.vercel.app/quiz/addQuestion"
+  const deletePoint = "https://quizy-api.vercel.app/quiz/deleteQuestion"
+  const savePoint = "https://quizy-api.vercel.app/quiz/saveQuiz"
+  const checkPoint = "https://quizy-api.vercel.app/auth/dashboard"
   const navigate = useNavigate()
 
   useEffect(() => {

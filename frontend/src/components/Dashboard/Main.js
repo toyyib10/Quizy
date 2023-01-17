@@ -26,7 +26,7 @@ const Main = () => {
           </button>
         </div>
       </header>
-      <div className=" col-12 px-4 pt-4">
+      <div className=" col-12 px-4 pt-4 pb-3">
         <div data-aos="fade-right" className="rounded-1 col-12 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-4">
           <Link to="/start" className="btn btn-main w-100 rounded-1 bg-danger text-white d-flex justify-content-between align-items-center" style={{fontSize: "2.5em"}}>
             Play Demo

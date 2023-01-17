@@ -3,7 +3,7 @@ import React from 'react'
 const Notfound = ({color}) => {
   return (
     <>
-      <div className="container">
+      <div className="container px-1">
         <h1 className="first-four" style={{"color":color}}>4</h1>
         <div className="cog-wheel1">
           <div className="cog1">

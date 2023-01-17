@@ -25,7 +25,7 @@ const Start = () => {
 
   return (
     <>
-      <section className="section d-flex align-items-center flex-column justify-content-center text-white">
+      <section className="section d-flex align-items-center flex-column justify-content-center text-white px-2 pb-3">
         <div className='mb-2'>
           <h2 className='fs-1'><b>{ title }</b> Quiz</h2>
         </div>

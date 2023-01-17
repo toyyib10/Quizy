@@ -9,7 +9,7 @@ const LandingPage = () => {
   }, [])
   return (
     <>
-      <section className='d-flex align-content-center px-3 justify-content-evenly flex-wrap' style={{"minHeight":"100vh"}}>
+      <section className='d-flex align-content-center px-3 pb-3 justify-content-evenly flex-wrap' style={{"minHeight":"100vh"}}>
         <div className="col-md-4 col-12 mt-md-0 mt-3" style={{"height":"32.3vh"}} data-aos="fade-right">
           <div className='fs-5 text-center h-50'>
             Welcome to <b>Quizy</b>,

@@ -9,7 +9,7 @@ const Signup = () => {
   const [message, setmessage] = useState("")
   const [done, setDone] = useState()
   const navigate = useNavigate()
-  const endPoint = "http://localhost:5000/auth/createaccount";
+  const endPoint = "https://quizy-api.vercel.app/auth/createaccount";
 
   const logIn = () => {
     navigate("/auth/signin")

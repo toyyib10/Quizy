@@ -9,7 +9,7 @@ const Main = () => {
   const [done, setDone] = useState()
   
   const getPin = (value) => {
-    const endPoint = "http://localhost:5000/quiz/getQuiz";
+    const endPoint = "https://quizy-api.vercel.app/quiz/getQuiz";
     if (value.length === 4) {
       setDone("true")
       setPin(value)
