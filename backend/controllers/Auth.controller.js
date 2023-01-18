@@ -52,15 +52,8 @@ const postCreateAccount = (req, res) => {
 }
 
 const getDashboard = (req, res) => {
-  let auth = req.headers.authorization;
-  let compare = 0;
-  let token = "";
-  for(let i = 0; i < auth.length; i++){
-    if (auth[i] === " " )compare = 1
-    if (compare === 1){ token += auth[i]}
-    console.log(auth[i])
-  } 
-  console.log(token)
+  const auth=req.headers.authorization;
+  const [, token] = auth.split(" ");
   jwt.verify(token, secret, (err,result) => {
     if (err) {
       res.send({ message : "err occured"})
