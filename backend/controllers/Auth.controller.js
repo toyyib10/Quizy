@@ -56,7 +56,7 @@ const getDashboard = (req, res) => {
   let compare = 0;
   let token = "";
   for(let i = 0; i < auth.length; i++){
-    if (auth[i] === " " )t = 1
+    if (auth[i] === " " )compare = 1
     if (compare === 1){ token += auth[i]}
   }
   jwt.verify(token, secret, (err,result) => {
